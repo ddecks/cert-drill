@@ -1,0 +1,19 @@
+[answers.Q1]
+correct = ["B"]
+explanation = "The sky appears blue due to Rayleigh scattering."
+
+[answers.Q2]
+correct = ["B"]
+explanation = "2 + 2 = 4."
+
+[answers.Q3]
+correct = ["C"]
+explanation = "Mercury is the closest planet to the Sun."
+
+[answers.Q4]
+correct = ["A", "C"]
+explanation = "Red and blue are primary colors in the RGB model."
+
+[answers.Q5]
+correct = ["B"]
+explanation = "Water boils at 100°C (212°F) at sea level."

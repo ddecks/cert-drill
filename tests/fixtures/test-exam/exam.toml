@@ -1,0 +1,13 @@
+id = "test-exam"
+title = "Integration Test Exam"
+passing_score = 60.0
+
+[[domains]]
+name = "Domain 1: Basics"
+weight = 50.0
+question_range = [1, 3]
+
+[[domains]]
+name = "Domain 2: Advanced"
+weight = 50.0
+question_range = [4, 5]
