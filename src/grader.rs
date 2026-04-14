@@ -60,6 +60,7 @@ pub fn grade(exam_id: &str, attempt: Option<&str>, score_only: bool, missed_only
             }
             print_graded_question(g, &questions);
         }
+        println!("Score: {}/{} ({:.1}%)\n", correct_count, total, pct);
     }
 
     save_graded(exam_id, &attempt_data.timestamp, &graded)?;
