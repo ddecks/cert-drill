@@ -1,7 +1,28 @@
 use clap::{Parser, Subcommand};
 
+fn get_exam_list() -> String {
+    let dir = std::path::Path::new("exams");
+    if !dir.exists() {
+        return "Available exams: (none — use `cert-drill load <path>` to add one)".to_string();
+    }
+    let mut exams = Vec::new();
+    if let Ok(entries) = std::fs::read_dir(dir) {
+        for entry in entries.flatten() {
+            if entry.file_type().map(|t| t.is_dir()).unwrap_or(false) {
+                exams.push(entry.file_name().to_string_lossy().to_string());
+            }
+        }
+    }
+    if exams.is_empty() {
+        "Available exams: (none — use `cert-drill load <path>` to add one)".to_string()
+    } else {
+        exams.sort();
+        format!("Available exams:\n  {}", exams.join("\n  "))
+    }
+}
+
 #[derive(Parser)]
-#[command(name = "cert-drill", about = "Certification exam drill tool with reasoning tracking")]
+#[command(name = "cert-drill", about = "Certification exam drill tool with reasoning tracking", after_help = get_exam_list())]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Command,
