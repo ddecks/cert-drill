@@ -2,37 +2,52 @@
 
 > Terminal-based certification exam drill tool with reasoning tracking
 
-cert-drill presents multiple-choice exam questions in the terminal, captures both the user's answer and their reasoning, then auto-grades against an answer key. Designed to complement AI-assisted study sessions.
+cert-drill presents multiple-choice exam questions in the terminal, captures both the user's answer and their reasoning, then auto-grades against an answer key. Also supports flashcard study mode. Designed to complement AI-assisted study sessions.
+
+## Commands
+
+- `list [--domains] [--name <id>]` — list exams with optional detail (domains, flashcard topics, progress)
+- `take <exam> [--range] [--random] [--domain] [--cram]` — interactive quiz with reasoning capture
+- `grade <exam> [--score-only] [--missed]` — auto-grade against answer key
+- `export <exam> [--ai-context] [--missed]` — export results as markdown or AI-formatted prompt
+- `progress <exam>` — scores by domain, weak areas, attempt history
+- `review <exam> [--missed]` — review past graded questions
+- `import <exam> <file>` — import answers from a markdown file
+- `flashcard <exam> [--random] [--domain]` — reveal-and-rate flashcard study
+- `load <path>` — import an exam pack
 
 ## Core Concepts
 
-- Exam Pack: A directory containing exam.toml (metadata), questions.md (questions), answers.toml (answer key)
-- Attempt: A single quiz session recording answers + reasoning + confidence per question
-- Graded Result: An attempt compared against the answer key with correct/incorrect flags
-- Progress: Aggregated stats across attempts showing scores by domain and weak areas
+- Exam Pack: directory with exam.toml (metadata), questions.md (questions), answers.toml (answer key), optional flashcards.md
+- Attempt: a quiz session recording answers + reasoning per question
+- Graded Result: attempt compared against answer key
+- Flashcard: front/back card with reveal-and-rate (forgot/fuzzy/got it)
+- Cram Mode: speed drill without reasoning prompts
+- AI Context Export: formats missed questions + reasoning as an AI review prompt
 
 ## Data Formats
 
-Questions are structured markdown with `**Q1.**` prefixed questions and `A)` through `D)` choices under `## Domain` headers. Answers and user data use TOML. User reasoning is stored as free-text per question in attempt files.
+- Questions: structured markdown with `**Q1.**` prefix and `A)` through `D)` choices under `## Domain` headers
+- Answers: TOML with `[answers.Q1]` sections containing `correct` and `explanation`
+- Flashcards: markdown with `Q:` front and `A:` back under `## Topic` headers
+- User data: TOML attempt files with reasoning as free-text (supports #tags like #shotInDark)
+- Import: markdown answer sheets like `1. D - reasoning here`
 
 ## Key Files
 
 - exams/<id>/exam.toml — exam metadata (title, domains with question ranges, passing score)
 - exams/<id>/questions.md — questions in structured markdown
 - exams/<id>/answers.toml — answer key with explanations
+- exams/<id>/flashcards.md — optional flashcards by topic
 - data/<id>/attempt-*.toml — user answers with reasoning (gitignored)
 - data/<id>/graded-*.toml — graded results (gitignored)
 
-## Usage
-
-```
-cert-drill load <path>                    # import an exam pack
-cert-drill take <exam> --range 1-20       # interactive quiz session
-cert-drill grade <exam> --attempt latest  # auto-grade
-cert-drill progress <exam>                # scores by domain, weak areas
-cert-drill review <exam> --missed         # review incorrect answers
-```
-
 ## For AI Assistants
 
-When reviewing a user's attempt data, prioritize the `reasoning` field — it reveals the user's thought process and misconceptions. Cross-reference `confidence` (1-5) with correctness: high confidence + wrong answer indicates a misconception to correct; low confidence + correct answer indicates a knowledge gap despite the right guess.
+When reviewing a user's cert-drill data:
+1. The `reasoning` field reveals the user's thought process and misconceptions
+2. Tags in reasoning (#shotInDark, #unsure, #confident) indicate self-assessed confidence
+3. Use `cert-drill export <exam> --ai-context` to get a pre-formatted review prompt
+4. High confidence + wrong answer = misconception to correct
+5. Low confidence + correct answer = knowledge gap despite right guess
+6. Progress data aggregates across attempts by domain for trend analysis
