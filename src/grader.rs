@@ -69,16 +69,39 @@ pub fn grade(exam_id: &str, attempt: Option<&str>, score_only: bool, missed_only
 
 pub fn review(exam_id: &str, missed_only: bool) -> Result<(), Box<dyn std::error::Error>> {
     let graded_dir = data_dir().join(exam_id);
-    let latest = find_latest_file(&graded_dir, "graded-")?;
-    let content = std::fs::read_to_string(latest)?;
-    let graded: Vec<GradedAnswer> = toml::from_str::<GradedWrapper>(&content)?.results;
+    let mut files: Vec<_> = std::fs::read_dir(&graded_dir)?
+        .filter_map(|e| e.ok())
+        .filter(|e| e.file_name().to_string_lossy().starts_with("graded-"))
+        .collect();
+    files.sort_by_key(|e| e.file_name());
+
+    if files.is_empty() {
+        return Err("No graded attempts found. Run `cert-drill grade` first.".into());
+    }
+
     let questions = exam::load_questions(&exams_dir().join(exam_id))?;
 
-    for g in &graded {
-        if missed_only && g.correct {
-            continue;
+    for (i, file) in files.iter().enumerate() {
+        let content = std::fs::read_to_string(file.path())?;
+        let graded: Vec<GradedAnswer> = toml::from_str::<GradedWrapper>(&content)?.results;
+        let correct = graded.iter().filter(|g| g.correct).count();
+        let total = graded.len();
+        let pct = if total > 0 { (correct as f64 / total as f64) * 100.0 } else { 0.0 };
+
+        // Extract timestamp from filename: graded-<timestamp>.toml
+        let fname = file.file_name();
+        let name = fname.to_string_lossy();
+        let ts = name.strip_prefix("graded-").and_then(|s| s.strip_suffix(".toml")).unwrap_or(&name);
+
+        println!("{}", format!("=== Attempt {} — {} — {}/{} ({:.1}%) ===", i + 1, ts, correct, total, pct).bold());
+        println!();
+
+        for g in &graded {
+            if missed_only && g.correct {
+                continue;
+            }
+            print_graded_question(g, &questions);
         }
-        print_graded_question(g, &questions);
     }
     Ok(())
 }
