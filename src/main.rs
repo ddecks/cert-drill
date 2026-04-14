@@ -22,7 +22,7 @@ fn main() {
         Command::Review { exam, missed } => grader::review(&exam, missed),
         Command::Import { exam, file } => import::import_answers(&exam, &file),
         Command::Flashcard { exam, random, domain } => flashcard::study(&exam, random, domain.as_deref()),
-        Command::List => session::list_exams(),
+        Command::List { domains, name } => session::list_exams(domains, name.as_deref()),
     };
 
     if let Err(e) = result {

@@ -26,17 +26,91 @@ pub fn load_exam(path: &str) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-pub fn list_exams() -> Result<(), Box<dyn std::error::Error>> {
+pub fn list_exams(show_domains: bool, name: Option<&str>) -> Result<(), Box<dyn std::error::Error>> {
     let dir = exams_dir();
     if !dir.exists() {
         println!("No exams loaded. Use `cert-drill load <path>` to add one.");
         return Ok(());
     }
+
+    // Single exam detail view
+    if let Some(exam_id) = name {
+        let exam_path = dir.join(exam_id);
+        if !exam_path.exists() {
+            return Err(format!("Exam '{}' not found.", exam_id).into());
+        }
+        let meta = exam::load_meta(&exam_path)?;
+        let questions = exam::load_questions(&exam_path)?;
+        let flashcards = exam::load_flashcards(&exam_path)?;
+
+        println!("\n{}", meta.title.bold());
+        println!("  ID: {}", meta.id);
+        println!("  Passing score: {:.0}%", meta.passing_score);
+        println!("  Questions: {}", questions.len());
+        if !flashcards.is_empty() {
+            println!("  Flashcards: {}", flashcards.len());
+        }
+
+        // File dates
+        if let Ok(m) = std::fs::metadata(exam_path.join("exam.toml")) {
+            if let Ok(created) = m.modified() {
+                let dt: chrono::DateTime<chrono::Local> = created.into();
+                println!("  Added: {}", dt.format("%Y-%m-%d"));
+            }
+        }
+
+        println!("\n  {}", "Domains:".bold());
+        for d in &meta.domains {
+            let q_count = questions.iter().filter(|q| q.number >= d.question_range[0] && q.number <= d.question_range[1]).count();
+            println!("    {} ({:.0}%, Q{}-Q{}, {} questions)", d.name, d.weight, d.question_range[0], d.question_range[1], q_count);
+        }
+
+        if !flashcards.is_empty() {
+            println!("\n  {}", "Flashcards by topic:".bold());
+            let mut fc_domains: std::collections::BTreeMap<String, usize> = std::collections::BTreeMap::new();
+            for fc in &flashcards {
+                let key = if fc.domain.is_empty() { "Uncategorized".to_string() } else { fc.domain.clone() };
+                *fc_domains.entry(key).or_insert(0) += 1;
+            }
+            for (domain, count) in &fc_domains {
+                println!("    {} ({})", domain, count);
+            }
+        }
+
+        // Progress summary if data exists
+        let data_path = data_dir().join(exam_id);
+        if data_path.exists() {
+            let attempts: Vec<_> = std::fs::read_dir(&data_path)?
+                .filter_map(|e| e.ok())
+                .filter(|e| e.file_name().to_string_lossy().starts_with("attempt-"))
+                .collect();
+            let graded: Vec<_> = std::fs::read_dir(&data_path)?
+                .filter_map(|e| e.ok())
+                .filter(|e| e.file_name().to_string_lossy().starts_with("graded-"))
+                .collect();
+            if !attempts.is_empty() {
+                println!("\n  {}", "Progress:".bold());
+                println!("    Attempts: {}", attempts.len());
+                println!("    Graded: {}", graded.len());
+            }
+        }
+
+        println!();
+        return Ok(());
+    }
+
+    // List all exams
     for entry in std::fs::read_dir(dir)? {
         let entry = entry?;
         if entry.file_type()?.is_dir() {
             if let Ok(meta) = exam::load_meta(&entry.path()) {
                 println!("  {} — {}", meta.id.bold(), meta.title);
+                if show_domains {
+                    for d in &meta.domains {
+                        println!("    {} ({:.0}%)", d.name, d.weight);
+                    }
+                    println!();
+                }
             }
         }
     }

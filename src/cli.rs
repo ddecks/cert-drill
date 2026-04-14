@@ -112,5 +112,12 @@ pub enum Command {
         domain: Option<String>,
     },
     /// List available exams
-    List,
+    List {
+        /// Show domains for all exams
+        #[arg(long, default_value_t = false)]
+        domains: bool,
+        /// Show detailed info for a specific exam
+        #[arg(short, long)]
+        name: Option<String>,
+    },
 }
