@@ -1,0 +1,23 @@
+id = "aws-saa-c03"
+title = "AWS Certified Solutions Architect – Associate (SAA-C03)"
+passing_score = 72.0
+
+[[domains]]
+name = "Domain 1: Design Secure Architectures"
+weight = 30.0
+question_range = [1, 30]
+
+[[domains]]
+name = "Domain 2: Design Resilient Architectures"
+weight = 26.0
+question_range = [31, 56]
+
+[[domains]]
+name = "Domain 3: Design High-Performing Architectures"
+weight = 24.0
+question_range = [57, 80]
+
+[[domains]]
+name = "Domain 4: Design Cost-Optimized Architectures"
+weight = 20.0
+question_range = [81, 100]

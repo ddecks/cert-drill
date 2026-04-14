@@ -1,0 +1,38 @@
+# cert-drill
+
+> Terminal-based certification exam drill tool with reasoning tracking
+
+cert-drill presents multiple-choice exam questions in the terminal, captures both the user's answer and their reasoning, then auto-grades against an answer key. Designed to complement AI-assisted study sessions.
+
+## Core Concepts
+
+- Exam Pack: A directory containing exam.toml (metadata), questions.md (questions), answers.toml (answer key)
+- Attempt: A single quiz session recording answers + reasoning + confidence per question
+- Graded Result: An attempt compared against the answer key with correct/incorrect flags
+- Progress: Aggregated stats across attempts showing scores by domain and weak areas
+
+## Data Formats
+
+Questions are structured markdown with `**Q1.**` prefixed questions and `A)` through `D)` choices under `## Domain` headers. Answers and user data use TOML. User reasoning is stored as free-text per question in attempt files.
+
+## Key Files
+
+- exams/<id>/exam.toml — exam metadata (title, domains with question ranges, passing score)
+- exams/<id>/questions.md — questions in structured markdown
+- exams/<id>/answers.toml — answer key with explanations
+- data/<id>/attempt-*.toml — user answers with reasoning (gitignored)
+- data/<id>/graded-*.toml — graded results (gitignored)
+
+## Usage
+
+```
+cert-drill load <path>                    # import an exam pack
+cert-drill take <exam> --range 1-20       # interactive quiz session
+cert-drill grade <exam> --attempt latest  # auto-grade
+cert-drill progress <exam>                # scores by domain, weak areas
+cert-drill review <exam> --missed         # review incorrect answers
+```
+
+## For AI Assistants
+
+When reviewing a user's attempt data, prioritize the `reasoning` field — it reveals the user's thought process and misconceptions. Cross-reference `confidence` (1-5) with correctness: high confidence + wrong answer indicates a misconception to correct; low confidence + correct answer indicates a knowledge gap despite the right guess.

@@ -1,0 +1,15 @@
+[package]
+name = "cert-drill"
+version = "0.1.0"
+edition = "2021"
+description = "Terminal-based certification exam drill tool with reasoning tracking"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+chrono = { version = "0.4", features = ["serde"] }
+colored = "2"
+dialoguer = "0.11"
+rand = "0.8"

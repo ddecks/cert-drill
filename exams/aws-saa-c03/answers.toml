@@ -1,0 +1,403 @@
+# Answer key for AWS SAA-C03 Practice Exam
+# Auto-generated from practice questions answer key
+
+[answers.Q1]
+correct = ["B"]
+explanation = "IAM Identity Center (SSO) provides centralized access management across multiple accounts with federation to corporate AD. It's purpose-built for this use case."
+
+[answers.Q2]
+correct = ["B"]
+explanation = "IAM roles attached to EC2 instances provide temporary credentials via the instance metadata service. No long-lived keys to manage or leak."
+
+[answers.Q3]
+correct = ["C"]
+explanation = "Customer managed CMKs in KMS support automatic annual rotation and give you full control over key policies. AWS managed keys also auto-rotate but you can't control the policy. SSE-S3 rotates keys but gives you no control at all."
+
+[answers.Q4]
+correct = ["A"]
+explanation = "An S3 bucket policy with 'aws:SourceVpc' condition restricts access to requests originating from the specified VPC (requires a VPC endpoint)."
+
+[answers.Q5]
+correct = ["A", "C"]
+explanation = "Site-to-Site VPN encrypts traffic using IPsec. Direct Connect with MACsec provides Layer 2 encryption. VPC peering, NAT gateways, and internet gateways do not provide encryption."
+
+[answers.Q6]
+correct = ["B"]
+explanation = "Secrets Manager is designed for storing and automatically rotating credentials. Parameter Store SecureString can store secrets but doesn't have built-in automatic rotation for database credentials."
+
+[answers.Q7]
+correct = ["B"]
+explanation = "ACM certificates are associated with ALB HTTPS listeners for SSL/TLS termination. Security groups control access but don't provide encryption."
+
+[answers.Q8]
+correct = ["A"]
+explanation = "The trust policy controls who/when can assume the role. A condition using 'aws:CurrentTime' in the trust policy restricts assumption to specific hours."
+
+[answers.Q9]
+correct = ["C"]
+explanation = "S3 Block Public Access at the account level is a preventive control that overrides any bucket policy or ACL that would grant public access. CloudTrail and Macie are detective, not preventive."
+
+[answers.Q10]
+correct = ["B"]
+explanation = "An S3 gateway VPC endpoint allows private subnet resources to access S3 without internet traffic. It's free and added to the route table."
+
+[answers.Q11]
+correct = ["C"]
+explanation = "Cross-account IAM role with a limited session duration is the most secure approach for temporary third-party access. No permanent credentials are created."
+
+[answers.Q12]
+correct = ["B"]
+explanation = "CloudTrail organization trails log API calls across all accounts in the organization to a central S3 bucket."
+
+[answers.Q13]
+correct = ["B"]
+explanation = "Encryption in transit requires configuring the application to use SSL/TLS and enforcing it on the RDS side. Encryption at rest and private subnets don't encrypt the connection."
+
+[answers.Q14]
+correct = ["B"]
+explanation = "GuardDuty is a threat detection service that analyzes CloudTrail, VPC Flow Logs, and DNS logs to identify threats. WAF blocks web exploits, Shield blocks DDoS, Inspector scans for vulnerabilities."
+
+[answers.Q15]
+correct = ["B"]
+explanation = "Security groups can reference other security groups as sources, creating a chain: web SG → app SG → DB SG. This is the standard tier-isolation pattern."
+
+[answers.Q16]
+correct = ["B"]
+explanation = "Enabling EBS encryption by default is a one-click account-level setting. All new volumes are automatically encrypted. No IAM policies or Lambda needed."
+
+[answers.Q17]
+correct = ["B"]
+explanation = "AWS WAF has managed rule groups specifically for SQL injection detection and blocking. Shield is for DDoS, GuardDuty is for threat detection."
+
+[answers.Q18]
+correct = ["B"]
+explanation = "SCPs prevent actions across the organization. An SCP denying CloudTrail stop/delete cannot be overridden by any IAM policy in member accounts."
+
+[answers.Q19]
+correct = ["B"]
+explanation = "Cognito identity pools (federated identities) exchange user pool tokens or social identity tokens for temporary AWS credentials scoped to specific services."
+
+[answers.Q20]
+correct = ["B"]
+explanation = "A KMS key policy with 'aws:sourceVpce' condition restricts key usage to requests coming through a specific VPC endpoint."
+
+[answers.Q21]
+correct = ["B"]
+explanation = "WAF supports geo-match conditions to allow/block by country and rate-based rules to throttle excessive requests."
+
+[answers.Q22]
+correct = ["B"]
+explanation = "Cross-account role assumption via STS is the standard pattern. The Lambda function in Account A assumes a role in Account B to access DynamoDB."
+
+[answers.Q23]
+correct = ["B"]
+explanation = "A bucket policy with a deny condition is the only way to enforce that a specific KMS key is used. Default encryption is a fallback, not enforcement — callers can override it."
+
+[answers.Q24]
+correct = ["B", "C", "E"]
+explanation = "Lambda authorizers (custom auth logic), Cognito user pool authorizers (JWT validation), and IAM authorization (SigV4) are the three API Gateway authentication methods. Resource policies control access by IP/VPC, not user authentication."
+
+[answers.Q25]
+correct = ["B"]
+explanation = "Session Manager provides shell access without SSH, without opening port 22, and logs all sessions to CloudTrail and optionally S3/CloudWatch."
+
+[answers.Q26]
+correct = ["B"]
+explanation = "SCPs are the only preventive control that enforces Region restrictions across all accounts in an OU. Config detects but doesn't prevent."
+
+[answers.Q27]
+correct = ["A"]
+explanation = "\"Publicly Accessible = No\" ensures no public IP is assigned. The security group inbound rule referencing the app SG ensures only the app tier can connect."
+
+[answers.Q28]
+correct = ["B"]
+explanation = "Secrets Manager has native RDS integration for automatic password rotation with zero application downtime. It handles the rotation Lambda function automatically."
+
+[answers.Q29]
+correct = ["B"]
+explanation = "VPC endpoint policies on the S3 gateway endpoint can restrict which buckets are accessible from the VPC, preventing exfiltration to external buckets."
+
+[answers.Q30]
+correct = ["B"]
+explanation = "An IAM policy that denies all actions (except MFA setup) when 'aws:MultiFactorAuthPresent' is false forces users to set up MFA before they can do anything."
+
+[answers.Q31]
+correct = ["B"]
+explanation = "Multi-AZ ASG + ALB is the minimum for surviving an AZ failure. Single-AZ ASG doesn't help if that AZ goes down."
+
+[answers.Q32]
+correct = ["B"]
+explanation = "Multi-AZ provides synchronous replication to a standby and automatic failover. Read replicas are async and require manual promotion."
+
+[answers.Q33]
+correct = ["B"]
+explanation = "Externalizing session state to ElastiCache or DynamoDB makes the web tier stateless. Sticky sessions partially help but don't survive instance termination."
+
+[answers.Q34]
+correct = ["C"]
+explanation = "Pilot light keeps core infrastructure (DB replicas) running at minimal cost. RTO of hours is achievable by scaling up compute on failover. Warm standby costs more. Backup/restore has longer RTO."
+
+[answers.Q35]
+correct = ["B"]
+explanation = "FIFO queues provide exactly-once processing via deduplication. Since the app can't be modified for idempotency, the queue must prevent duplicates."
+
+[answers.Q36]
+correct = ["B"]
+explanation = "Instance store is ephemeral. Data is lost on stop, terminate, or hardware failure. This is the biggest risk for any data stored there."
+
+[answers.Q37]
+correct = ["B"]
+explanation = "SQS decouples the request from processing. The web app returns immediately after enqueueing. The back-end processes asynchronously."
+
+[answers.Q38]
+correct = ["B"]
+explanation = "Aurora read replicas + reader endpoint distribute read traffic. Auto Scaling can add/remove replicas based on load."
+
+[answers.Q39]
+correct = ["B"]
+explanation = "SNS fan-out to multiple SQS queues ensures each consumer gets every message independently. A single SQS queue with multiple consumers means each message goes to only one consumer."
+
+[answers.Q40]
+correct = ["A", "C"]
+explanation = "Versioning preserves previous versions of deleted/overwritten objects. MFA Delete requires MFA to permanently delete versions, adding another layer of protection."
+
+[answers.Q41]
+correct = ["B"]
+explanation = "ECS Service Auto Scaling with a custom metric (ApproximateNumberOfMessagesVisible from SQS) scales tasks based on queue depth."
+
+[answers.Q42]
+correct = ["B"]
+explanation = "Configuring maximum retry attempts and an on-failure destination prevents infinite retries and allows failed records to be captured for later analysis."
+
+[answers.Q43]
+correct = ["B"]
+explanation = "Multi-Region deployment with Route 53 failover routing is the only option that survives a full Region outage. Multi-AZ only protects within a Region."
+
+[answers.Q44]
+correct = ["B"]
+explanation = "Default termination policy: pick the AZ with the most instances, then terminate the instance with the oldest launch configuration/template."
+
+[answers.Q45]
+correct = ["B"]
+explanation = "Cross-Region read replicas provide a read-only copy in another Region with continuous async replication. Purpose-built for this use case."
+
+[answers.Q46]
+correct = ["B"]
+explanation = "A dead-letter queue (DLQ) with a maxReceiveCount captures messages that fail processing repeatedly, preventing them from blocking the main queue."
+
+[answers.Q47]
+correct = ["B"]
+explanation = "NLB provides static IP addresses (one per AZ via Elastic IP). ALB only has dynamic IPs behind a DNS name."
+
+[answers.Q48]
+correct = ["B"]
+explanation = "S3 Cross-Region Replication automatically replicates objects to a destination bucket in another Region. Requires versioning enabled."
+
+[answers.Q49]
+correct = ["B"]
+explanation = "The app tier is the bottleneck, so adding an Auto Scaling group lets it scale horizontally based on demand."
+
+[answers.Q50]
+correct = ["B"]
+explanation = "Step Functions natively supports retry with exponential backoff and catch blocks for error handling. This is the standard resilience pattern."
+
+[answers.Q51]
+correct = ["B"]
+explanation = "NLB supports Elastic IP assignment per subnet/AZ, providing static IPs for the load balancer itself."
+
+[answers.Q52]
+correct = ["B"]
+explanation = "Aurora automatically handles failover by promoting a reader to writer, typically within 30 seconds. No manual intervention needed."
+
+[answers.Q53]
+correct = ["C"]
+explanation = "Amazon MQ supports MQTT, AMQP, and other standard messaging protocols. It's a managed broker for migrating traditional message queues."
+
+[answers.Q54]
+correct = ["B"]
+explanation = "ALB health checks verify that the application is responding correctly before routing traffic to new instances."
+
+[answers.Q55]
+correct = ["C"]
+explanation = "Failover routing with health checks on the primary automatically routes traffic to the secondary when the primary is unhealthy."
+
+[answers.Q56]
+correct = ["A"]
+explanation = "Rolling update with MinInstancesInService ensures the ASG never drops below the specified number of healthy instances during updates."
+
+[answers.Q57]
+correct = ["C"]
+explanation = "FSx for Lustre is purpose-built for HPC with sub-millisecond latency and can be linked to S3 for transparent data access."
+
+[answers.Q58]
+correct = ["B"]
+explanation = "io2 Block Express supports up to 256,000 IOPS. gp3 maxes out at 16,000 IOPS. gp2 maxes at 16,000. st1 is throughput-optimized HDD."
+
+[answers.Q59]
+correct = ["B"]
+explanation = "Adding a random suffix (write sharding) distributes writes across more partitions, eliminating hot partition issues."
+
+[answers.Q60]
+correct = ["B"]
+explanation = "CloudFront caches content at 400+ edge locations globally, providing the lowest latency for static content delivery from S3."
+
+[answers.Q61]
+correct = ["B"]
+explanation = "FIFO queues process messages in order per message group. Using multiple message group IDs allows parallel processing across groups, increasing throughput."
+
+[answers.Q62]
+correct = ["B"]
+explanation = "ElastiCache for Redis is the standard caching layer for relational databases. DAX is only for DynamoDB. CloudFront caches HTTP responses, not DB queries."
+
+[answers.Q63]
+correct = ["B"]
+explanation = "ECS on Fargate is serverless containers — no EC2 instances to manage. You define the task and Fargate handles the infrastructure."
+
+[answers.Q64]
+correct = ["C"]
+explanation = "Athena is serverless and queries data directly in S3 using SQL. No data loading required. Pay per query scanned."
+
+[answers.Q65]
+correct = ["C"]
+explanation = "ALB natively supports WebSocket connections. The connection is upgraded from HTTP to WebSocket at the ALB."
+
+[answers.Q66]
+correct = ["B"]
+explanation = "DMS handles data migration. SCT converts the Oracle schema to PostgreSQL-compatible schema. Together they handle heterogeneous database migration."
+
+[answers.Q67]
+correct = ["B"]
+explanation = "API Gateway + Lambda scales to zero when idle (no cost) and handles thousands of concurrent requests automatically. No servers to manage."
+
+[answers.Q68]
+correct = ["B"]
+explanation = "Data Firehose (formerly Kinesis Data Firehose) can deliver streaming data to S3, OpenSearch, and other destinations with near-real-time delivery and automatic scaling."
+
+[answers.Q69]
+correct = ["B"]
+explanation = "On-demand capacity mode automatically scales to handle any traffic level. You pay per request. Ideal for unpredictable workloads."
+
+[answers.Q70]
+correct = ["C"]
+explanation = "Latency-based routing directs users to the Region with the lowest network latency. Geolocation routes by geographic location, which doesn't always mean lowest latency."
+
+[answers.Q71]
+correct = ["B"]
+explanation = "AWS Glue ETL is serverless and purpose-built for data transformation jobs including format conversion (CSV to Parquet)."
+
+[answers.Q72]
+correct = ["A"]
+explanation = "Terminating SSL at the ALB offloads the CPU-intensive encryption work from EC2 instances. Backend traffic can be HTTP (or re-encrypted if needed)."
+
+[answers.Q73]
+correct = ["C"]
+explanation = "DynamoDB provides single-digit millisecond latency at any scale for key-value workloads. It's the go-to for gaming leaderboards."
+
+[answers.Q74]
+correct = ["C"]
+explanation = "S3 event → SQS → consumers is the most scalable pattern. SQS buffers the work, and multiple consumers (Lambda or Fargate) process in parallel. Direct S3→Lambda works but can hit concurrency limits with high upload rates."
+
+[answers.Q75]
+correct = ["B"]
+explanation = "Global Accelerator uses the AWS global network to route TCP/UDP traffic to the nearest edge location, then over the AWS backbone to the ALB. CloudFront is for HTTP/HTTPS caching."
+
+[answers.Q76]
+correct = ["A"]
+explanation = "Public ALB for internet-facing web tier, internal ALB for the app tier ensures the app tier is only accessible from within the VPC."
+
+[answers.Q77]
+correct = ["C"]
+explanation = "Redshift is a columnar data warehouse designed for complex analytical queries across petabytes of structured data."
+
+[answers.Q78]
+correct = ["B"]
+explanation = "CloudFront caches S3 objects at edge locations, reducing both latency and S3 GET request costs."
+
+[answers.Q79]
+correct = ["B"]
+explanation = "QuickSight is a serverless BI service that connects natively to Athena, RDS, Redshift, and many other AWS data sources for dashboards and visualizations."
+
+[answers.Q80]
+correct = ["B"]
+explanation = "FSx for Windows File Server provides a fully managed Windows-native (SMB) file system. EFS is Linux/NFS only."
+
+[answers.Q81]
+correct = ["C"]
+explanation = "Compute Savings Plans offer up to 66% savings for steady 24/7 workloads with flexibility across instance types. Reserved Instances also work but are less flexible."
+
+[answers.Q82]
+correct = ["C"]
+explanation = "Intelligent-Tiering automatically moves objects between access tiers based on usage patterns. Ideal when access patterns are unpredictable. Small monitoring fee per object but no retrieval fees."
+
+[answers.Q83]
+correct = ["B"]
+explanation = "AWS Organizations consolidated billing provides a single bill across all accounts and shares RI/Savings Plan discounts across the organization."
+
+[answers.Q84]
+correct = ["B"]
+explanation = "Stopping RDS instances outside business hours eliminates compute charges (~60% of the week). You only pay for storage while stopped."
+
+[answers.Q85]
+correct = ["B"]
+explanation = "Fault-tolerant + can resume from checkpoint + short daily runs = textbook Spot use case. Up to 90% savings."
+
+[answers.Q86]
+correct = ["B"]
+explanation = "VPC gateway endpoints for S3 and DynamoDB are free (no data processing charges). Interface endpoints for other services cost less than NAT gateway data processing. This eliminates most NAT gateway costs."
+
+[answers.Q87]
+correct = ["B"]
+explanation = "Compute Optimizer analyzes utilization metrics and recommends right-sized instance types. 15% CPU utilization means the instances are significantly over-provisioned."
+
+[answers.Q88]
+correct = ["C"]
+explanation = "Glacier Deep Archive is the cheapest storage class (~$1/TB/month). For data that's never accessed but must be retained for compliance, it's the clear choice."
+
+[answers.Q89]
+correct = ["B"]
+explanation = "Reserved concurrency sets a maximum limit on concurrent executions, capping the number of simultaneous invocations and therefore cost. Provisioned concurrency increases cost."
+
+[answers.Q90]
+correct = ["A"]
+explanation = "Trusted Advisor has checks for underutilized and unused Reserved Instances, showing utilization percentages and potential savings."
+
+[answers.Q91]
+correct = ["B"]
+explanation = "CloudFront caches responses at edge locations, reducing the amount of data transferred from the origin (EC2) to the internet. CloudFront data transfer pricing is also lower than EC2 data transfer."
+
+[answers.Q92]
+correct = ["A"]
+explanation = "Mixed instances policy uses On-Demand for baseline capacity and Spot for burst capacity. This balances cost savings with availability."
+
+[answers.Q93]
+correct = ["C"]
+explanation = "Aurora storage auto-scales in 10 GB increments and you only pay for storage used. RDS allocated storage cannot be decreased, only increased. Migration to Aurora solves the over-provisioning."
+
+[answers.Q94]
+correct = ["B"]
+explanation = "Redshift pause/resume stops compute charges while paused. You only pay for storage. Ideal for clusters with significant idle time."
+
+[answers.Q95]
+correct = ["B"]
+explanation = "S3 gateway VPC endpoints are free — no hourly charge and no data processing charge. NAT gateway charges $0.045/GB for data processing."
+
+[answers.Q96]
+correct = ["B"]
+explanation = "Short, fault-tolerant build jobs are ideal for Spot Instances. 30-minute jobs have low interruption risk and massive cost savings."
+
+[answers.Q97]
+correct = ["B"]
+explanation = "Offloading static content to CloudFront + S3 reduces the number of requests hitting the ALB, directly reducing ALB costs (charged per LCU based on connections/requests)."
+
+[answers.Q98]
+correct = ["B"]
+explanation = "AWS Budgets supports forecasted cost budgets with alert thresholds. It can notify you when projected spend exceeds your target. CloudWatch billing alarms only trigger on actual spend, not forecasted."
+
+[answers.Q99]
+correct = ["A"]
+explanation = "gp3 provides 3,000 baseline IOPS regardless of volume size (unlike gp2 which scales IOPS with size at 3 IOPS/GB). You can use a smaller, cheaper gp3 volume and still get 3,000 IOPS."
+
+[answers.Q100]
+correct = ["B"]
+explanation = "Cost allocation tags (both AWS-generated and user-defined) allow you to categorize and track costs by team, project, environment, or any dimension. Tag enforcement policies ensure compliance."
+
