@@ -155,14 +155,30 @@ fn parse_questions(content: &str) -> Result<Vec<Question>, Box<dyn std::error::E
     Ok(questions)
 }
 
-/// Parse flashcards from flashcards.md (or ## Flashcards section)
+/// Parse flashcards from all *flashcard*.md files in the exam directory.
 /// Format: Q: front text / A: back text (one per block, separated by blank lines)
 pub fn load_flashcards(exam_dir: &Path) -> Result<Vec<Flashcard>, Box<dyn std::error::Error>> {
-    let fc_path = exam_dir.join("flashcards.md");
-    if !fc_path.exists() {
+    let mut all_cards = Vec::new();
+    let mut found_any = false;
+
+    for entry in std::fs::read_dir(exam_dir)? {
+        let entry = entry?;
+        let name = entry.file_name().to_string_lossy().to_lowercase();
+        if name.contains("flashcard") && name.ends_with(".md") {
+            found_any = true;
+            let content = std::fs::read_to_string(entry.path())?;
+            let cards = parse_flashcards(&content);
+            all_cards.extend(cards);
+        }
+    }
+
+    if !found_any {
         return Ok(vec![]);
     }
-    let content = std::fs::read_to_string(fc_path)?;
+    Ok(all_cards)
+}
+
+fn parse_flashcards(content: &str) -> Vec<Flashcard> {
     let mut cards = Vec::new();
     let mut domain = String::new();
     let mut front = String::new();
@@ -198,7 +214,7 @@ pub fn load_flashcards(exam_dir: &Path) -> Result<Vec<Flashcard>, Box<dyn std::e
     if !front.is_empty() && !back.is_empty() {
         cards.push(Flashcard { front: front.trim().to_string(), back: back.trim().to_string(), domain: domain.clone() });
     }
-    Ok(cards)
+    cards
 }
 
 struct QuestionBuilder {
