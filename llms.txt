@@ -13,15 +13,16 @@ cert-drill presents multiple-choice exam questions in the terminal, captures bot
 - `progress <exam>` — scores by domain, weak areas, attempt history
 - `review <exam> [--missed]` — review past graded questions
 - `import <exam> <file>` — import answers from a markdown file
-- `flashcard <exam> [--random] [--domain]` — reveal-and-rate flashcard study
+- `flashcard <exam> [--random] [--domain] [--progress]` — reveal-and-rate flashcard study with spaced repetition
 - `load <path>` — import an exam pack
 
 ## Core Concepts
 
-- Exam Pack: directory with exam.toml (metadata), questions.md (questions), answers.toml (answer key), optional flashcards.md
+- Exam Pack: directory with exam.toml (metadata), questions.md (questions), answers.toml (answer key), optional *flashcard*.md files (any file matching the glob is loaded)
 - Attempt: a quiz session recording answers + reasoning per question
 - Graded Result: attempt compared against answer key
-- Flashcard: front/back card with reveal-and-rate (forgot/fuzzy/got it)
+- Flashcard: front/back card with reveal-and-rate (forgot/fuzzy/got it) and spaced repetition scheduling
+- Spaced Repetition: SM-2-inspired intervals — forgot resets to 10min, fuzzy grows slowly, got-it grows fast
 - Cram Mode: speed drill without reasoning prompts
 - AI Context Export: formats missed questions + reasoning as an AI review prompt
 
@@ -39,8 +40,10 @@ cert-drill presents multiple-choice exam questions in the terminal, captures bot
 - exams/<id>/questions.md — questions in structured markdown
 - exams/<id>/answers.toml — answer key with explanations
 - exams/<id>/flashcards.md — optional flashcards by topic
+- exams/<id>/flashcards-concepts.md — optional additional concept cards (any *flashcard*.md file is loaded)
 - data/<id>/attempt-*.toml — user answers with reasoning (gitignored)
 - data/<id>/graded-*.toml — graded results (gitignored)
+- data/<id>/flashcard-ratings.toml — spaced repetition state (gitignored)
 
 ## For AI Assistants
 

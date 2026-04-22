@@ -13,7 +13,36 @@ Most quiz tools tell you right/wrong. cert-drill also records *why* you chose ea
 
 ## Install
 
-Requires [Rust](https://rustup.rs/). Works on Linux, macOS, Windows, and [Termux](https://termux.dev/) (Android).
+Works on Linux, macOS, Windows, and [Termux](https://termux.dev/) (Android).
+
+### Pre-built binaries (no Rust required)
+
+Download the latest release for your platform from [GitHub Releases](https://github.com/ddecks/cert-drill/releases):
+
+```bash
+# Linux (x86_64)
+curl -L https://github.com/ddecks/cert-drill/releases/latest/download/cert-drill-x86_64-unknown-linux-gnu.tar.gz | tar xz
+cd cert-drill && ./cert-drill list
+
+# macOS (Apple Silicon)
+curl -L https://github.com/ddecks/cert-drill/releases/latest/download/cert-drill-aarch64-apple-darwin.tar.gz | tar xz
+cd cert-drill && ./cert-drill list
+
+# macOS (Intel)
+curl -L https://github.com/ddecks/cert-drill/releases/latest/download/cert-drill-x86_64-apple-darwin.tar.gz | tar xz
+cd cert-drill && ./cert-drill list
+```
+
+On Windows, download the `.zip` from the releases page and extract it.
+
+Optionally move the binary to your PATH:
+```bash
+sudo mv cert-drill /usr/local/bin/
+```
+
+### From source
+
+Requires [Rust](https://rustup.rs/).
 
 ```bash
 git clone https://github.com/ddecks/cert-drill.git
@@ -259,6 +288,27 @@ cert-drill export aws-saa-c03 --ai-context | pbcopy
   - 100 multiple-choice questions across 4 domains
   - 184 flashcards across 15 topics (135 service cards + 49 concept cards)
   - Full answer key with explanations
+
+## Contributing
+
+```bash
+git clone https://github.com/ddecks/cert-drill.git
+cd cert-drill
+cargo build
+cargo test
+```
+
+## Releasing
+
+To create a new release with pre-built binaries:
+
+```bash
+# Update version in Cargo.toml, then:
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+GitHub Actions will automatically build binaries for all platforms and create a release.
 
 ## License
 

@@ -11,7 +11,8 @@ cert-drill/
 │       ├── exam.toml       # Metadata: title, domains, passing score
 │       ├── questions.md    # Questions in structured markdown
 │       ├── answers.toml    # Answer key with explanations
-│       └── flashcards.md   # Optional: flashcards (Q:/A: format)
+│       ├── flashcards.md   # Optional: flashcards (Q:/A: format)
+│       └── flashcards-concepts.md  # Optional: concept cards (any *flashcard*.md loaded)
 ├── data/               # User state (gitignored, not in repo)
 │   └── <exam-id>/
 │       ├── attempt-*.toml  # Raw answers + reasoning per session
@@ -37,7 +38,7 @@ cert-drill export <exam> [--ai-context] [--missed]
 cert-drill progress <exam>
 cert-drill review <exam> [--missed]
 cert-drill import <exam> <file>
-cert-drill flashcard <exam> [--random] [--domain "X"]
+cert-drill flashcard <exam> [--random] [--domain "X"] [--progress]
 cert-drill load <path>
 ```
 
@@ -93,7 +94,8 @@ When a user shares their cert-drill attempt files or asks for study help:
 3. The `--ai-context` export flag generates a pre-formatted prompt with missed questions + reasoning
 4. Grade results are in `data/<exam-id>/graded-*.toml`
 5. Progress tracking aggregates across all attempts by domain
-6. Flashcards are in `exams/<exam-id>/flashcards.md` organized by topic
+6. Flashcards are in `exams/<exam-id>/*flashcard*.md` organized by topic (multiple files supported)
+7. Flashcard ratings with spaced repetition state are in `data/<exam-id>/flashcard-ratings.toml`
 
 ## Post-Submit Flow
 After submitting a quiz, the score is shown automatically, then the user is prompted:
@@ -109,4 +111,5 @@ After submitting a quiz, the score is shown automatically, then the user is prom
 - Auto-grading works without AI, but the data is structured for AI review
 - The tool complements AI tutoring — it captures structured data that AI can analyze
 - Cram mode available for speed drilling without reasoning capture
+- Flashcards use spaced repetition (SM-2-inspired) with persistent ratings
 - Works on Termux (Android) for mobile study
