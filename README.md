@@ -108,14 +108,17 @@ The `--ai-context` flag wraps your missed questions with a prompt asking an AI t
 
 ### `cert-drill flashcard <EXAM>`
 
-Reveal-and-rate flashcard study mode.
+Reveal-and-rate flashcard study mode with spaced repetition.
 
 ```bash
 cert-drill flashcard aws-saa-c03                    # all cards, randomized
 cert-drill flashcard aws-saa-c03 --domain "Caching" # filter by topic
+cert-drill flashcard aws-saa-c03 --progress         # show mastery stats
 ```
 
 Each card shows the front (question/term), you press Enter to reveal the back (answer/definition), then rate yourself: `1` = forgot, `2` = fuzzy, `3` = got it.
+
+Ratings are saved and used for **spaced repetition** — cards you forget come back sooner, cards you know get pushed out further. The `--progress` flag shows per-topic mastery rates, due counts, and review history.
 
 ### `cert-drill progress <EXAM>`
 
@@ -166,11 +169,14 @@ An exam pack is a directory with 2-3 files:
 
 ```
 exams/my-cert/
-├── exam.toml         # required: metadata
-├── questions.md      # required: questions in structured markdown
-├── answers.toml      # required: answer key with explanations
-└── flashcards.md     # optional: flashcards
+├── exam.toml              # required: metadata
+├── questions.md           # required: questions in structured markdown
+├── answers.toml           # required: answer key with explanations
+├── flashcards.md          # optional: flashcards
+└── flashcards-concepts.md # optional: additional concept cards
 ```
+
+Any file matching `*flashcard*.md` is automatically loaded, so you can split cards across multiple files (e.g., `flashcards.md` for service-specific cards and `flashcards-concepts.md` for broader concepts).
 
 See `exams/aws-saa-c03/` for a complete example.
 
@@ -246,7 +252,12 @@ cert-drill export aws-saa-c03 --ai-context | pbcopy
 
 - **aws-saa-c03** — AWS Solutions Architect Associate (SAA-C03)
   - 100 multiple-choice questions across 4 domains
-  - 119 flashcards across 16 topics
+  - 176 flashcards across 20 topics (119 service cards + 57 concept cards)
+  - Full answer key with explanations
+
+- **aws-dva-c02** — AWS Certified Developer Associate (DVA-C02)
+  - 100 multiple-choice questions across 4 domains
+  - 184 flashcards across 15 topics (135 service cards + 49 concept cards)
   - Full answer key with explanations
 
 ## License
