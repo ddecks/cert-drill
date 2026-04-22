@@ -1,0 +1,23 @@
+id = "aws-dva-c02"
+title = "AWS Certified Developer – Associate (DVA-C02)"
+passing_score = 72.0
+
+[[domains]]
+name = "Domain 1: Development with AWS Services"
+weight = 32.0
+question_range = [1, 32]
+
+[[domains]]
+name = "Domain 2: Security"
+weight = 26.0
+question_range = [33, 58]
+
+[[domains]]
+name = "Domain 3: Deployment"
+weight = 24.0
+question_range = [59, 82]
+
+[[domains]]
+name = "Domain 4: Troubleshooting and Optimization"
+weight = 18.0
+question_range = [83, 100]

@@ -1,0 +1,401 @@
+# Answer key for AWS DVA-C02 Practice Exam
+
+[answers.Q1]
+correct = ["B"]
+explanation = "Lambda supports a maximum timeout of 900 seconds (15 minutes). Setting it to 600 seconds (10 minutes) handles the requirement. Default timeout is only 3 seconds."
+
+[answers.Q2]
+correct = ["C"]
+explanation = "ElastiCache for Redis supports TTL on individual keys and provides sub-millisecond latency. DynamoDB with TTL is also valid but TTL deletion is not guaranteed to be immediate (can take up to 48 hours). ElastiCache TTL is exact."
+
+[answers.Q3]
+correct = ["B"]
+explanation = "600 items/min = 10 items/sec. Each item is 5 KB, which rounds up to 5 WCU per item (1 WCU = 1 KB). 10 × 5 = 50 WCU."
+
+[answers.Q4]
+correct = ["B"]
+explanation = "Exponential backoff with jitter is the AWS-recommended retry strategy for throttling errors. The AWS SDK implements this automatically, but custom implementations should follow this pattern."
+
+[answers.Q5]
+correct = ["C"]
+explanation = "BatchGetItem retrieves multiple items by primary key in a single call (up to 100 items or 16 MB). Query requires a single partition key. Scan reads the entire table."
+
+[answers.Q6]
+correct = ["C"]
+explanation = "SQS guarantees at-least-once delivery, meaning duplicates are possible. The developer must implement idempotency (e.g., tracking processed message IDs in DynamoDB) to handle this."
+
+[answers.Q7]
+correct = ["B"]
+explanation = "SNS fan-out pattern: publish to an SNS topic that has multiple SQS queues subscribed. Each queue receives a copy of the message. This is the standard fan-out architecture."
+
+[answers.Q8]
+correct = ["B"]
+explanation = "13 KB rounds up to 4 RCU per item (each RCU covers 4 KB for strongly consistent). 25 × 4 = 100 RCU for strongly consistent. Eventually consistent reads get 2 reads per RCU, so 100 / 2 = 50 RCU."
+
+[answers.Q9]
+correct = ["B"]
+explanation = "API Gateway request validators can validate the request body against a JSON schema model and check required parameters before the Lambda function is invoked, saving compute costs."
+
+[answers.Q10]
+correct = ["B"]
+explanation = "DynamoDB Streams captures item-level changes (insert, update, delete) and can trigger a Lambda function to process changes in near real-time, such as updating a search index."
+
+[answers.Q11]
+correct = ["B"]
+explanation = "RDS Proxy pools and shares database connections, solving the connection exhaustion problem that occurs when many Lambda invocations each open their own connection."
+
+[answers.Q12]
+correct = ["B"]
+explanation = "FIFO queues guarantee ordering and exactly-once processing. Content-based deduplication uses a SHA-256 hash of the message body to prevent duplicates within the 5-minute deduplication interval."
+
+[answers.Q13]
+correct = ["B"]
+explanation = "With Lambda proxy integration, the Lambda function must return an object with statusCode (number), headers (object), and body (string). API Gateway passes this directly to the client."
+
+[answers.Q14]
+correct = ["A"]
+explanation = "S3 Standard is designed for frequently accessed data with low latency. DynamoDB has a 400 KB item limit. S3 supports objects up to 5 TB and is more cost-effective for large objects."
+
+[answers.Q15]
+correct = ["B"]
+explanation = "The visibility timeout makes a message invisible to other consumers while it is being processed. Default is 30 seconds. If processing takes longer, the consumer should call ChangeMessageVisibility."
+
+[answers.Q16]
+correct = ["B"]
+explanation = "Writing back to the same bucket triggers another S3 event, which invokes the Lambda again, creating an infinite loop. Use a prefix/suffix filter on the event notification or write to a different bucket."
+
+[answers.Q17]
+correct = ["C"]
+explanation = "AWS AppSync is a managed GraphQL service that natively supports real-time subscriptions via WebSockets, offline data sync, and integration with DynamoDB, Lambda, and other data sources."
+
+[answers.Q18]
+correct = ["B"]
+explanation = "8 KB rounds up to 2 RCU per item (each RCU covers 4 KB). 10 items/sec × 2 RCU = 20 RCU for strongly consistent reads."
+
+[answers.Q19]
+correct = ["B"]
+explanation = "Step Functions orchestrates multi-step workflows with built-in support for human approval tasks (callback pattern), error handling, retries, and parallel execution."
+
+[answers.Q20]
+correct = ["B"]
+explanation = "Lambda destinations allow you to route asynchronous invocation results (success or failure) to SQS, SNS, Lambda, or EventBridge. An on-failure destination captures the event payload and error details."
+
+[answers.Q21]
+correct = ["B"]
+explanation = "Optimistic locking uses a version attribute. The conditional write checks that the version hasn't changed since the read. If it has, the write fails and the application retries. This prevents lost updates without locking."
+
+[answers.Q22]
+correct = ["B"]
+explanation = "Amazon API Gateway supports WebSocket APIs for persistent bidirectional connections. ALB supports WebSocket passthrough but doesn't manage the WebSocket protocol itself."
+
+[answers.Q23]
+correct = ["B"]
+explanation = "Parallel Scan divides the table into segments and scans them concurrently, significantly improving throughput for large tables. BatchGetItem requires knowing all primary keys upfront."
+
+[answers.Q24]
+correct = ["B"]
+explanation = "Lambda functions in a VPC private subnet need a NAT gateway to reach the internet. Without it, outbound internet calls time out. Alternatively, remove the function from the VPC if it doesn't need VPC resources."
+
+[answers.Q25]
+correct = ["B"]
+explanation = "By default, Lambda processes each Kinesis shard with one concurrent invocation. With 4 shards, there are 4 concurrent invocations. The parallelization factor (up to 10) can increase this to 40."
+
+[answers.Q26]
+correct = ["B"]
+explanation = "API Gateway stage-level caching stores responses for a configurable TTL, reducing backend invocations. CloudFront also works but API Gateway caching is more tightly integrated."
+
+[answers.Q27]
+correct = ["B"]
+explanation = "Pre-signed URLs grant temporary, time-limited permission to upload directly to S3. The application generates the URL server-side and the client uploads directly, avoiding server bandwidth costs."
+
+[answers.Q28]
+correct = ["B"]
+explanation = "Bisect batch on function error splits the failed batch in half and retries each half, isolating the bad record. This prevents a single poison pill message from blocking the entire shard."
+
+[answers.Q29]
+correct = ["B"]
+explanation = "Parameter Store is designed for configuration data. It's free for standard parameters, supports hierarchies, and integrates with Lambda. Secrets Manager is for secrets that need rotation, which is overkill for config values."
+
+[answers.Q30]
+correct = ["C"]
+explanation = "EventBridge provides event-driven architecture with content-based filtering rules, schema discovery, and integration with 20+ AWS services. SNS with filtering also works but EventBridge offers richer filtering and more targets."
+
+[answers.Q31]
+correct = ["C"]
+explanation = "TransactWriteItems provides ACID transactions across multiple tables (up to 100 items). If any operation fails, the entire transaction is rolled back. BatchWriteItem does NOT support transactions."
+
+[answers.Q32]
+correct = ["D"]
+explanation = "Placing initialization outside the handler reuses the connection pool across warm invocations (execution context reuse). Provisioned concurrency keeps instances warm, eliminating cold starts entirely. Both together give the best result."
+
+[answers.Q33]
+correct = ["B"]
+explanation = "Secrets Manager is purpose-built for credential storage with automatic rotation via Lambda. Parameter Store SecureString can store secrets but doesn't have built-in automatic rotation for database credentials."
+
+[answers.Q34]
+correct = ["C"]
+explanation = "An IAM execution role attached to the Lambda function provides temporary credentials automatically. The role should have only the specific S3 read and DynamoDB write permissions needed (least privilege)."
+
+[answers.Q35]
+correct = ["B"]
+explanation = "Cognito identity pools (federated identities) exchange tokens from social providers for temporary AWS credentials via STS. User pools handle authentication; identity pools handle authorization to AWS resources."
+
+[answers.Q36]
+correct = ["B"]
+explanation = "API Gateway has a built-in Cognito user pool authorizer that validates JWT tokens directly without custom code. A Lambda authorizer works but requires writing and maintaining custom validation logic."
+
+[answers.Q37]
+correct = ["D"]
+explanation = "Client-side encryption means the data is encrypted before it reaches AWS. SSE-S3, SSE-KMS, and SSE-C are all server-side encryption options where S3 performs the encryption."
+
+[answers.Q38]
+correct = ["B"]
+explanation = "KMS Encrypt has a 4 KB payload limit. For larger data, use envelope encryption: GenerateDataKey returns a plaintext and encrypted data key. Encrypt data locally with the plaintext key, then store the encrypted data key alongside the ciphertext."
+
+[answers.Q39]
+correct = ["B"]
+explanation = "A cross-account IAM role with STS AssumeRole provides temporary, scoped credentials. Pre-signed URLs work for individual objects but don't provide general bucket access."
+
+[answers.Q40]
+correct = ["D"]
+explanation = "Both approaches are valid. Lambda encrypts environment variables at rest by default, but using a customer KMS key with in-function decryption adds an extra layer. Secrets Manager is the preferred approach for sensitive credentials."
+
+[answers.Q41]
+correct = ["D"]
+explanation = "DynamoDB fine-grained access control uses IAM policy conditions on dynamodb:LeadingKeys to restrict access based on the partition key value, ensuring users can only access items matching their tenant_id."
+
+[answers.Q42]
+correct = ["C"]
+explanation = "IAM instance profiles (roles) provide temporary credentials via the instance metadata service. No long-lived keys to manage, rotate, or risk leaking. This is the AWS best practice for EC2."
+
+[answers.Q43]
+correct = ["B"]
+explanation = "AWS Signature Version 4 (SigV4) is the signing process for authenticating AWS API requests. It uses HMAC-SHA256 to sign the request with your secret access key, date, region, and service."
+
+[answers.Q44]
+correct = ["B"]
+explanation = "The pre-token generation Lambda trigger fires before Cognito issues tokens, allowing you to add, modify, or suppress claims in the ID token and access token."
+
+[answers.Q45]
+correct = ["A"]
+explanation = "A private API Gateway with a resource policy restricting access to a specific VPC endpoint ensures only traffic from that VPC can reach the API."
+
+[answers.Q46]
+correct = ["B"]
+explanation = "SecureString parameters are encrypted using AWS KMS. You can use the default AWS-managed key or specify a customer-managed CMK."
+
+[answers.Q47]
+correct = ["A"]
+explanation = "A bucket policy with Deny effect and condition 'aws:SecureTransport': 'false' rejects any request not made over HTTPS. Default encryption only encrypts at rest, not in transit."
+
+[answers.Q48]
+correct = ["D"]
+explanation = "API Gateway Cognito authorizers can be configured to validate either the ID token or the access token. The ID token contains user identity claims; the access token contains scopes."
+
+[answers.Q49]
+correct = ["B"]
+explanation = "Cross-account access uses an IAM role in Account B that trusts Account A. The Lambda function calls STS AssumeRole to get temporary credentials for Account B's DynamoDB table."
+
+[answers.Q50]
+correct = ["A"]
+explanation = "STS temporary credentials consist of an access key ID, a secret access key, and a session token. All three must be included in API requests made with temporary credentials."
+
+[answers.Q51]
+correct = ["B"]
+explanation = "A bucket policy condition on s3:x-amz-server-side-encryption-aws-kms-key-id denies uploads that don't use the specified KMS key. Default encryption is a fallback, not an enforcement mechanism."
+
+[answers.Q52]
+correct = ["B"]
+explanation = "Usage plans with API keys allow per-client throttling and quota limits. Lambda reserved concurrency limits function-level concurrency, not per-client request rates."
+
+[answers.Q53]
+correct = ["C"]
+explanation = "For proxy integrations, API Gateway does not modify the response. CORS headers must be returned by the Lambda function in the response headers. The API Gateway CORS configuration handles the OPTIONS preflight request."
+
+[answers.Q54]
+correct = ["B"]
+explanation = "Allowing only dynamodb:GetItem and dynamodb:Query on the specific table ARN follows least privilege. dynamodb:Read* is not a valid IAM action prefix. Using resource * is overly permissive."
+
+[answers.Q55]
+correct = ["B"]
+explanation = "The X-Amzn-Trace-Id header carries the trace ID and sampling decision. It must be propagated in downstream HTTP requests for X-Ray to connect the segments into a single trace."
+
+[answers.Q56]
+correct = ["B"]
+explanation = "IAM authorization with SigV4 is designed for machine-to-machine authentication. The calling service signs requests with AWS credentials. API keys alone are not a security mechanism (they're for throttling)."
+
+[answers.Q57]
+correct = ["B"]
+explanation = "AdministratorAccess grants full access to all AWS services and resources. If the function is compromised, an attacker has unrestricted access. Replace with a policy scoped to only the services and actions the function needs."
+
+[answers.Q58]
+correct = ["B"]
+explanation = "ECS task definition secrets reference values from Secrets Manager or SSM Parameter Store. The values are injected as environment variables at container startup without being stored in the image."
+
+[answers.Q59]
+correct = ["B"]
+explanation = "sam build compiles the application and resolves dependencies. sam deploy packages artifacts, uploads to S3, and deploys the CloudFormation stack. sam package is a legacy command replaced by sam deploy --guided."
+
+[answers.Q60]
+correct = ["B"]
+explanation = "buildspec.yml defines the build commands, phases (install, pre_build, build, post_build), and artifacts for CodeBuild. appspec.yml is used by CodeDeploy for deployment lifecycle hooks."
+
+[answers.Q61]
+correct = ["C"]
+explanation = "Linear10PercentEvery3Minutes shifts 10% of traffic every 3 minutes, completing in 30 minutes. Canary10Percent30Minutes shifts 10% immediately, then the remaining 90% after 30 minutes."
+
+[answers.Q62]
+correct = ["D"]
+explanation = "Immutable deployment launches a new set of instances in a new ASG, deploys to them, then swaps. If anything fails, the original instances are untouched. Rolling deployments update in-place and are harder to roll back."
+
+[answers.Q63]
+correct = ["B"]
+explanation = "SAM extends CloudFormation with serverless-specific resource types (AWS::Serverless::Function, etc.) and provides a CLI for local testing and deployment. It's purpose-built for serverless applications."
+
+[answers.Q64]
+correct = ["B"]
+explanation = "ApplicationStop runs before the new revision is downloaded. It's used to gracefully stop the currently running application. BeforeInstall runs after the files are copied but before install scripts."
+
+[answers.Q65]
+correct = ["B"]
+explanation = "By default, CloudFormation rolls back on failure, deleting all resources created during the failed stack creation. This can be changed with --disable-rollback for debugging."
+
+[answers.Q66]
+correct = ["B"]
+explanation = "ECS on Fargate is serverless — no EC2 instances to manage, patch, or scale. You define the task (CPU, memory, container image) and Fargate handles the infrastructure."
+
+[answers.Q67]
+correct = ["B"]
+explanation = "sam local invoke runs the Lambda function locally in a Docker container. The -e flag specifies a JSON file containing the test event payload."
+
+[answers.Q68]
+correct = ["B"]
+explanation = "CloudFormation Parameters accept input values at stack creation/update time, allowing the same template to be reused across environments with different configurations."
+
+[answers.Q69]
+correct = ["B"]
+explanation = "CodeDeploy Blue/Green for ECS creates a new task set (green) and shifts traffic by updating the ALB listener rules to point to the new target group. The old target group (blue) is kept for rollback."
+
+[answers.Q70]
+correct = ["B"]
+explanation = "AWS::Serverless::LayerVersion defines a Lambda layer in SAM. It specifies the layer content URI and compatible runtimes. Functions reference the layer in their Layers property."
+
+[answers.Q71]
+correct = ["B"]
+explanation = ".ebextensions are YAML/JSON config files in the .ebextensions/ directory of your source bundle. They can install packages, run commands, configure services, and set environment properties."
+
+[answers.Q72]
+correct = ["D"]
+explanation = "Lambda container images can be up to 10 GB. ZIP deployment packages are limited to 50 MB (compressed) or 250 MB (uncompressed). Container image support enables larger dependencies."
+
+[answers.Q73]
+correct = ["B"]
+explanation = "CodePipeline supports manual approval actions that pause the pipeline and optionally send an SNS notification. An authorized user must approve or reject before the pipeline continues."
+
+[answers.Q74]
+correct = ["B"]
+explanation = "CloudFormation Exports make output values available to other stacks in the same region. Fn::ImportValue references an exported value by name in the consuming stack."
+
+[answers.Q75]
+correct = ["E"]
+explanation = "AWS::Serverless::Function defines the Lambda function with event sources. AWS::Serverless::SimpleTable creates a DynamoDB table with a single-attribute primary key. AWS::Serverless::Api can define the API Gateway."
+
+[answers.Q76]
+correct = ["A"]
+explanation = "CodeDeploy deployment groups support automatic rollback triggered by CloudWatch alarms. If the alarm enters ALARM state after deployment, CodeDeploy automatically redeploys the previous revision."
+
+[answers.Q77]
+correct = ["B"]
+explanation = "Custom resources backed by Lambda allow you to run arbitrary code during stack create, update, and delete operations. The Lambda function receives the request and sends a response to a pre-signed S3 URL."
+
+[answers.Q78]
+correct = ["A"]
+explanation = "CloudFormation StackSets deploy stacks across multiple accounts and regions from a single template. This is the native AWS solution for multi-region deployments."
+
+[answers.Q79]
+correct = ["B"]
+explanation = "Clone the environment, deploy the new version to the clone, test it, then use CNAME swap to route production traffic to the new environment. This provides instant cutover and rollback."
+
+[answers.Q80]
+correct = ["B"]
+explanation = "CodePipeline stores artifacts in an S3 bucket (the pipeline artifact store). CodeBuild outputs artifacts to this bucket, and CodeDeploy reads them from it."
+
+[answers.Q81]
+correct = ["B"]
+explanation = "In SAM, the Events property on AWS::Serverless::Function defines event sources. An S3 event type specifies the bucket and events (e.g., s3:ObjectCreated:*). SAM creates the notification configuration automatically."
+
+[answers.Q82]
+correct = ["D"]
+explanation = "Both ECS rolling updates and Blue/Green deployments with CodeDeploy achieve zero downtime. Rolling updates gradually replace tasks. Blue/Green creates a new task set and shifts ALB traffic."
+
+[answers.Q83]
+correct = ["B"]
+explanation = "Cold starts occur when Lambda must initialize a new execution environment (download code, start runtime, run init code). Provisioned concurrency keeps environments warm, eliminating cold starts."
+
+[answers.Q84]
+correct = ["B"]
+explanation = "X-Ray provides a service map and trace visualization showing the end-to-end request path, latency breakdown, and errors across distributed services."
+
+[answers.Q85]
+correct = ["B"]
+explanation = "ProvisionedThroughputExceededException means the request rate exceeds the table's provisioned capacity. Implement exponential backoff for retries. For variable workloads, on-demand capacity mode auto-scales."
+
+[answers.Q86]
+correct = ["B"]
+explanation = "A 502 from API Gateway with Lambda proxy integration almost always means the Lambda response format is wrong. It must include statusCode (integer) and body (string). Missing either causes a 502."
+
+[answers.Q87]
+correct = ["B"]
+explanation = "ApproximateNumberOfMessagesVisible shows messages available for retrieval. ApproximateNumberOfMessagesNotVisible shows messages currently being processed (in-flight)."
+
+[answers.Q88]
+correct = ["B"]
+explanation = "AWS SDKs include automatic retry logic with exponential backoff for throttling and transient errors. The retry count and backoff strategy are configurable."
+
+[answers.Q89]
+correct = ["B"]
+explanation = "Lambda logs memory usage in CloudWatch Logs at the end of each invocation: 'REPORT RequestId: ... Max Memory Used: X MB'. If Max Memory Used equals the configured memory, the function ran out."
+
+[answers.Q90]
+correct = ["B"]
+explanation = "Hot partitions cause throttling even when overall capacity is available because DynamoDB distributes capacity evenly across partitions. Redesigning the partition key (e.g., adding a random suffix) distributes load."
+
+[answers.Q91]
+correct = ["A"]
+explanation = "CloudWatch Logs Insights allows you to query across multiple log groups with a SQL-like syntax. Example: fields @timestamp, @message | filter @message like /ERROR/ | sort @timestamp desc."
+
+[answers.Q92]
+correct = ["B"]
+explanation = "Lambda aliases point to a specific function version. After publishing a new version, you must update the alias to point to it. If the alias still points to the old version, that's what gets invoked."
+
+[answers.Q93]
+correct = ["B"]
+explanation = "Lambda allocates CPU proportional to memory. Increasing memory from 128 MB to 1024 MB gives 8x more CPU, which can dramatically reduce execution time for CPU-bound or I/O-bound functions."
+
+[answers.Q94]
+correct = ["A", "B"]
+explanation = "Auto-scaling adjusts provisioned capacity based on utilization. On-demand mode eliminates capacity planning entirely by scaling instantly. Both address throughput spikes. Adding indexes increases write costs."
+
+[answers.Q95]
+correct = ["B"]
+explanation = "If Lambda executes in 200ms but the API response takes 2 seconds, the overhead is in API Gateway itself. Enable CloudWatch logging and check integration latency metrics to identify the bottleneck."
+
+[answers.Q96]
+correct = ["B"]
+explanation = "A metric math expression (Errors/Invocations × 100) calculates the error rate as a percentage. A static threshold on Errors alone doesn't account for invocation volume."
+
+[answers.Q97]
+correct = ["B"]
+explanation = "X-Ray subsegments represent units of work within a segment. Annotations are indexed key-value pairs for filtering traces. Metadata is non-indexed data for debugging."
+
+[answers.Q98]
+correct = ["A", "B"]
+explanation = "The task execution role needs ecr:GetAuthorizationToken and ecr:BatchGetImage permissions. In a private subnet, the task needs a NAT gateway or VPC endpoints for ECR, S3, and CloudWatch Logs."
+
+[answers.Q99]
+correct = ["B"]
+explanation = "Projection expressions return only specified attributes, reducing the amount of data read and thus the consumed RCU. However, the RCU calculation is still based on the full item size, so the savings come from reduced data transfer."
+
+[answers.Q100]
+correct = ["B"]
+explanation = "Each Lambda function must have X-Ray active tracing enabled independently. SQS does propagate the X-Ray trace header (AWSTraceHeader message attribute), but the consuming Lambda must have tracing enabled to continue the trace."

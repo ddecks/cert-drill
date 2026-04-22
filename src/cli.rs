@@ -110,6 +110,9 @@ pub enum Command {
         /// Filter by domain
         #[arg(short, long)]
         domain: Option<String>,
+        /// Show flashcard progress and mastery stats
+        #[arg(short, long, default_value_t = false)]
+        progress: bool,
     },
     /// List available exams
     List {
