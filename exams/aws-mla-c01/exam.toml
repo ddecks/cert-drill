@@ -1,0 +1,23 @@
+id = "aws-mla-c01"
+title = "AWS Certified Machine Learning Engineer – Associate (MLA-C01)"
+passing_score = 72.0
+
+[[domains]]
+name = "Domain 1: Data Preparation for Machine Learning"
+weight = 28.0
+question_range = [1, 28]
+
+[[domains]]
+name = "Domain 2: ML Model Development"
+weight = 26.0
+question_range = [29, 54]
+
+[[domains]]
+name = "Domain 3: Deployment and Orchestration of ML Workflows"
+weight = 22.0
+question_range = [55, 76]
+
+[[domains]]
+name = "Domain 4: ML Solution Monitoring, Maintenance, and Security"
+weight = 24.0
+question_range = [77, 100]

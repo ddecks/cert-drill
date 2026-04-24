@@ -1,0 +1,401 @@
+# Answer key for AWS MLA-C01 Practice Exam
+
+[answers.Q1]
+correct = ["B"]
+explanation = "Kinesis Data Firehose is a fully managed service that delivers streaming data to S3 with near real-time delivery (minimum 60-second buffer). It requires no custom consumer code, unlike Kinesis Data Streams."
+
+[answers.Q2]
+correct = ["B"]
+explanation = "AWS Glue DataBrew is a visual data preparation tool that allows users to explore, clean, and transform data without writing code. It provides 250+ built-in transformations and data profiling."
+
+[answers.Q3]
+correct = ["C"]
+explanation = "Target encoding replaces each category with the mean of the target variable for that category, producing a single numerical column regardless of cardinality. One-hot encoding with 200 categories would create 200 sparse columns."
+
+[answers.Q4]
+correct = ["B", "C"]
+explanation = "SMOTE generates synthetic minority samples by interpolating between existing minority examples. Cost-sensitive learning assigns higher misclassification penalties to the minority class. Both address imbalance without discarding data."
+
+[answers.Q5]
+correct = ["B"]
+explanation = "SageMaker Ground Truth provides managed data labeling workflows with options for human annotators (Amazon Mechanical Turk, private teams, or third-party vendors) and supports active learning to reduce labeling costs."
+
+[answers.Q6]
+correct = ["B"]
+explanation = "AWS Glue is a serverless ETL service that can crawl data, infer schemas, and run Spark-based ETL jobs to clean, deduplicate, and transform data. It integrates natively with S3."
+
+[answers.Q7]
+correct = ["C"]
+explanation = "Apache Parquet is a columnar storage format that provides efficient compression and encoding. It is optimized for analytical queries and is the preferred format for ML training data on AWS."
+
+[answers.Q8]
+correct = ["B"]
+explanation = "SageMaker Feature Store provides both an online store (low-latency GetRecord API for inference) and an offline store (S3-backed for batch training). It manages feature consistency across training and inference."
+
+[answers.Q9]
+correct = ["C"]
+explanation = "Robust scaling uses the median and interquartile range (IQR) instead of mean and standard deviation, making it resistant to outliers. Min-max normalization is heavily affected by outliers."
+
+[answers.Q10]
+correct = ["A"]
+explanation = "AWS Glue Data Catalog is a centralized metadata repository that stores table definitions, schemas, and partition information across S3, RDS, Redshift, and other data stores. It integrates with Athena, EMR, and Glue ETL."
+
+[answers.Q11]
+correct = ["B", "C"]
+explanation = "Removing HTML tags and special characters eliminates noise. Lowercasing ensures consistent token representation (e.g., 'The' and 'the' are treated the same). These are standard NLP preprocessing steps."
+
+[answers.Q12]
+correct = ["D"]
+explanation = "Athena CTAS (CREATE TABLE AS SELECT) can read CSV from S3 and write Parquet back to S3 in a single SQL statement. It is serverless, requires no infrastructure, and is cost-effective for one-time conversions."
+
+[answers.Q13]
+correct = ["C"]
+explanation = "For time-series data, chronological splitting prevents data leakage. Random splitting would allow the model to see future data during training, leading to overly optimistic performance estimates."
+
+[answers.Q14]
+correct = ["A"]
+explanation = "Data Wrangler flows can be exported as SageMaker Pipeline steps, allowing the same transformation logic to be reused across datasets in an automated, reproducible pipeline."
+
+[answers.Q15]
+correct = ["B"]
+explanation = "SageMaker Clarify can detect pre-training bias using metrics like Class Imbalance (CI), Difference in Proportions of Labels (DPL), and others. It analyzes the dataset before model training."
+
+[answers.Q16]
+correct = ["B"]
+explanation = "Feature standardization (z-score normalization) transforms features to have zero mean and unit variance, ensuring features on different scales contribute equally to model training."
+
+[answers.Q17]
+correct = ["B"]
+explanation = "SageMaker Processing jobs support Apache Spark for distributed data processing. They can handle large datasets (50+ TB) across multiple instances and integrate directly with the SageMaker ecosystem."
+
+[answers.Q18]
+correct = ["A"]
+explanation = "Amazon Macie uses ML to identify PII in S3 data. AWS Glue ETL jobs can then mask, hash, or remove the identified PII fields. Encryption alone does not remove PII from the data."
+
+[answers.Q19]
+correct = ["B"]
+explanation = "Imputing with the mean or median preserves the dataset size while providing reasonable estimates. Median is preferred when the distribution is skewed. Dropping 30% of rows would significantly reduce the training data."
+
+[answers.Q20]
+correct = ["B"]
+explanation = "Amazon Managed Service for Apache Flink supports complex stream processing including filtering, aggregation, windowing, and joins. Firehose only supports simple transformations via Lambda."
+
+[answers.Q21]
+correct = ["C"]
+explanation = "WordPiece and BPE are subword tokenization methods used by transformer models like BERT and GPT. They handle out-of-vocabulary words by breaking them into known subword units."
+
+[answers.Q22]
+correct = ["B"]
+explanation = "AWS Lake Formation provides centralized governance for data lakes including fine-grained access control, data encryption, audit logging, and cross-account sharing. It builds on top of the Glue Data Catalog."
+
+[answers.Q23]
+correct = ["B"]
+explanation = "PCA (Principal Component Analysis) reduces dimensionality by projecting data onto principal components that capture the most variance. It is effective when features are highly correlated."
+
+[answers.Q24]
+correct = ["B"]
+explanation = "SageMaker Processing jobs can run data validation frameworks like Great Expectations to check schemas, missing values, and statistical properties. This integrates into SageMaker Pipelines for automated validation."
+
+[answers.Q25]
+correct = ["B"]
+explanation = "Athena federated queries can join data across RDS and S3 in a single SQL query without moving data. This is more efficient than exporting and re-uploading data."
+
+[answers.Q26]
+correct = ["A", "C"]
+explanation = "CNNs require fixed-size input, so images must be resized to consistent dimensions. Normalizing pixel values (e.g., dividing by 255 to get 0-1 range) helps with training convergence."
+
+[answers.Q27]
+correct = ["C"]
+explanation = "RecordIO (protobuf) is SageMaker's optimized format for sequential reading. It supports pipe mode streaming directly from S3, avoiding the need to download the entire dataset before training."
+
+[answers.Q28]
+correct = ["B"]
+explanation = "SageMaker ML Lineage Tracking automatically tracks the relationships between datasets, processing jobs, training jobs, and model artifacts, providing end-to-end data and model lineage."
+
+[answers.Q29]
+correct = ["B"]
+explanation = "Amazon Bedrock Knowledge Bases enables RAG by connecting foundation models to your data sources. It automatically chunks, embeds, and indexes documents, then retrieves relevant context for each query."
+
+[answers.Q30]
+correct = ["B"]
+explanation = "Transfer learning leverages a pre-trained model's learned features and fine-tunes on a small dataset. This is far more effective than training from scratch with limited data."
+
+[answers.Q31]
+correct = ["B"]
+explanation = "High training accuracy with low validation accuracy is the classic sign of overfitting — the model has memorized the training data but fails to generalize to unseen data."
+
+[answers.Q32]
+correct = ["B"]
+explanation = "SageMaker Automatic Model Tuning (Hyperparameter Optimization) runs multiple training jobs with different hyperparameter combinations using Bayesian optimization, random search, or grid search strategies."
+
+[answers.Q33]
+correct = ["B"]
+explanation = "BlazingText in supervised mode is designed for text classification. It is based on the fastText algorithm and can efficiently classify text into multiple categories."
+
+[answers.Q34]
+correct = ["B"]
+explanation = "An oscillating loss function typically indicates the learning rate is too high, causing the optimizer to overshoot the minimum. Reducing the learning rate allows more stable convergence."
+
+[answers.Q35]
+correct = ["B"]
+explanation = "Amazon Comprehend provides pre-trained NLP models for entity recognition, sentiment analysis, key phrase extraction, and language detection without requiring custom model training."
+
+[answers.Q36]
+correct = ["C"]
+explanation = "Recall (sensitivity) measures the proportion of actual positives correctly identified. When false negatives are costly (missing a disease), maximizing recall ensures fewer cases are missed."
+
+[answers.Q37]
+correct = ["B"]
+explanation = "SageMaker Experiments allows you to organize, track, and compare ML experiments. It logs parameters, metrics, and artifacts for each trial, enabling systematic comparison across runs."
+
+[answers.Q38]
+correct = ["C"]
+explanation = "Random Cut Forest (RCF) is an unsupervised algorithm designed for anomaly detection. It assigns anomaly scores to data points without requiring labeled data."
+
+[answers.Q39]
+correct = ["B", "C"]
+explanation = "Dropout randomly deactivates neurons during training, preventing co-adaptation. Early stopping halts training when validation loss stops improving, preventing the model from memorizing training data."
+
+[answers.Q40]
+correct = ["A"]
+explanation = "Amazon Personalize is a fully managed service for building recommendation systems. It handles user-item interaction data and provides real-time personalized recommendations without requiring ML expertise."
+
+[answers.Q41]
+correct = ["B"]
+explanation = "Bedrock Model Fine-tuning allows you to customize a foundation model using your proprietary data, adapting the model's responses to your specific domain and use case."
+
+[answers.Q42]
+correct = ["B"]
+explanation = "Macro-averaged F1 score computes F1 for each class independently and averages them, giving equal weight to all classes. It balances precision and recall across all classes."
+
+[answers.Q43]
+correct = ["B"]
+explanation = "Amazon Forecast is a fully managed service purpose-built for time-series forecasting. It automatically selects the best algorithm and handles data preprocessing, training, and hosting."
+
+[answers.Q44]
+correct = ["B"]
+explanation = "SageMaker Debugger captures tensors during training and can detect issues like vanishing gradients, exploding tensors, overfitting, and poor weight initialization using built-in rules."
+
+[answers.Q45]
+correct = ["B"]
+explanation = "SageMaker Autopilot automatically explores multiple algorithms and hyperparameters, generates candidate models, and ranks them. It provides full visibility into the generated code and model artifacts."
+
+[answers.Q46]
+correct = ["C"]
+explanation = "Increasing the regularization parameter (lambda/alpha) in XGBoost penalizes complex models, reducing overfitting. Increasing max_depth or reducing min_child_weight would increase model complexity."
+
+[answers.Q47]
+correct = ["D"]
+explanation = "Amazon Lookout for Vision is purpose-built for automated visual inspection in manufacturing. It detects defects with as few as 30 normal and 20 anomalous images, requires no ML expertise, and is specifically designed for industrial quality inspection use cases."
+
+[answers.Q48]
+correct = ["B"]
+explanation = "SageMaker Clarify uses SHAP (SHapley Additive exPlanations) to provide feature-level explanations for individual predictions, showing how each feature contributes to the model output."
+
+[answers.Q49]
+correct = ["C"]
+explanation = "RMSE is the standard metric for regression problems. It measures the average magnitude of prediction errors in the same units as the target variable. Accuracy and F1 are for classification."
+
+[answers.Q50]
+correct = ["B"]
+explanation = "SageMaker managed distributed training supports data parallelism and model parallelism across multiple instances. It handles the communication and synchronization between instances automatically."
+
+[answers.Q51]
+correct = ["B"]
+explanation = "GANs and variational autoencoders can learn the underlying distribution of the data and generate realistic synthetic samples. This is more effective than simple duplication."
+
+[answers.Q52]
+correct = ["B"]
+explanation = "SageMaker Model Registry tracks model versions, associates metadata (datasets, metrics, approval status), and manages the model lifecycle from development to production deployment."
+
+[answers.Q53]
+correct = ["B"]
+explanation = "Amazon Comprehend provides built-in sentiment analysis that classifies text as positive, negative, neutral, or mixed without requiring custom model training."
+
+[answers.Q54]
+correct = ["A", "C"]
+explanation = "Distributed data parallel training splits data across multiple GPUs/instances for faster processing. Mixed-precision training (FP16) reduces memory usage and increases throughput on supported GPU hardware."
+
+[answers.Q55]
+correct = ["B"]
+explanation = "SageMaker Real-time Inference Endpoints provide persistent, always-on endpoints with low-latency responses suitable for web applications. They support auto-scaling based on traffic."
+
+[answers.Q56]
+correct = ["B"]
+explanation = "SageMaker Batch Transform is designed for offline inference on large datasets. It provisions instances, runs inference, stores results in S3, and terminates — paying only for the processing time."
+
+[answers.Q57]
+correct = ["B"]
+explanation = "Canary deployment shifts a small percentage of traffic to the new model first, monitors for issues, then gradually increases traffic. SageMaker endpoints support traffic shifting between production variants."
+
+[answers.Q58]
+correct = ["B"]
+explanation = "SageMaker Multi-Model Endpoints host multiple models on a single endpoint, dynamically loading and unloading models based on traffic patterns. This reduces costs when serving many models."
+
+[answers.Q59]
+correct = ["B"]
+explanation = "SageMaker Pipelines is purpose-built for ML workflows. It provides native integration with SageMaker services, supports conditional logic, caching, and model registry integration."
+
+[answers.Q60]
+correct = ["A"]
+explanation = "SageMaker Neo compiles trained models for specific target hardware (edge devices, mobile, embedded systems), optimizing them for faster inference with lower resource consumption."
+
+[answers.Q61]
+correct = ["B"]
+explanation = "AWS CloudFormation and AWS CDK provide infrastructure as code for SageMaker resources. CDK offers higher-level constructs specifically for SageMaker, enabling repeatable and version-controlled deployments."
+
+[answers.Q62]
+correct = ["B"]
+explanation = "Auto-scaling based on InvocationsPerInstance automatically adjusts the number of instances based on traffic. It scales up during peak hours and down during idle periods, optimizing costs."
+
+[answers.Q63]
+correct = ["B"]
+explanation = "SageMaker Inference Pipelines chain up to 5 containers in sequence on a single endpoint. Each container handles a specific step (preprocessing, inference, post-processing)."
+
+[answers.Q64]
+correct = ["A"]
+explanation = "S3 event notifications trigger a Lambda function when new data arrives. Lambda starts a SageMaker Pipeline that handles retraining, evaluation, and conditional deployment — fully automated."
+
+[answers.Q65]
+correct = ["C"]
+explanation = "SageMaker Asynchronous Inference handles large payloads (up to 1 GB) and long processing times (up to 15 minutes). It queues requests and returns results to S3, with optional SNS notifications."
+
+[answers.Q66]
+correct = ["A", "B"]
+explanation = "CodePipeline orchestrates the CI/CD workflow (source, build, test, deploy stages). CodeBuild compiles code, runs tests, and produces deployable artifacts. Together they automate the ML deployment pipeline."
+
+[answers.Q67]
+correct = ["B"]
+explanation = "SageMaker's inference toolkit expects a custom inference script with model_fn (load model), input_fn (deserialize input), predict_fn (run inference), and output_fn (serialize output) functions."
+
+[answers.Q68]
+correct = ["B"]
+explanation = "SageMaker Serverless Inference automatically scales to zero when idle and scales up on demand. You pay only for the compute time used during inference, ideal for sporadic traffic."
+
+[answers.Q69]
+correct = ["B"]
+explanation = "A VPC endpoint for S3 (gateway endpoint) allows the training job to access S3 data through the AWS private network without requiring internet access. This maintains network isolation."
+
+[answers.Q70]
+correct = ["D"]
+explanation = "A CallbackStep or Lambda step can pause the pipeline and wait for an external approval signal before proceeding. This enables human-in-the-loop approval before production deployment."
+
+[answers.Q71]
+correct = ["B"]
+explanation = "Packaging the model in a Docker container provides maximum portability. The same container can run on Amazon EKS, on-premises Kubernetes, or any container runtime."
+
+[answers.Q72]
+correct = ["C"]
+explanation = "ConditionStep evaluates conditions (e.g., F1 score > 0.85) and branches the pipeline accordingly — deploying the model if the condition is met or skipping deployment if not."
+
+[answers.Q73]
+correct = ["C"]
+explanation = "ml.g4dn instances include NVIDIA T4 GPUs, suitable for GPU-accelerated inference workloads like video processing. The m5 and c5 families are CPU-only, and t3 is for lightweight workloads."
+
+[answers.Q74]
+correct = ["B"]
+explanation = "SageMaker endpoints support production variants with configurable traffic weights. You can assign 90% traffic to variant A and 10% to variant B for A/B testing on a single endpoint."
+
+[answers.Q75]
+correct = ["B"]
+explanation = "Model quantization reduces numerical precision (e.g., FP32 to INT8), significantly reducing model size and inference latency with minimal accuracy loss. SageMaker Neo supports this."
+
+[answers.Q76]
+correct = ["B"]
+explanation = "SageMaker Pipeline step caching stores the outputs of completed steps. If a step's inputs haven't changed, the cached result is reused, avoiding redundant computation."
+
+[answers.Q77]
+correct = ["B"]
+explanation = "Data drift occurs when the statistical distribution of input data changes over time compared to the training data. Concept drift is when the relationship between inputs and outputs changes."
+
+[answers.Q78]
+correct = ["B"]
+explanation = "SageMaker Model Monitor provides four monitoring types: data quality, model quality, bias drift, and feature attribution drift. It runs on a schedule and integrates with CloudWatch for alerts."
+
+[answers.Q79]
+correct = ["B"]
+explanation = "Data Quality Monitor compares the statistical properties of incoming inference data against a baseline computed from the training data. It detects distribution shifts, missing values, and schema changes."
+
+[answers.Q80]
+correct = ["A"]
+explanation = "SageMaker Clarify provides ongoing bias monitoring for deployed models. It can detect bias drift across protected attributes and integrates with SageMaker Model Monitor for scheduled checks."
+
+[answers.Q81]
+correct = ["B"]
+explanation = "Amazon CloudWatch receives SageMaker endpoint metrics including ModelLatency, OverheadLatency, Invocations, and InvocationsPerInstance. These metrics help diagnose latency issues."
+
+[answers.Q82]
+correct = ["D"]
+explanation = "Feature Attribution Drift Monitor tracks changes in feature importance (SHAP values) over time. It detects when the model's reliance on features shifts from the baseline."
+
+[answers.Q83]
+correct = ["B"]
+explanation = "AWS IAM policies and roles control access to all SageMaker resources. Execution roles define what SageMaker jobs can access, and identity-based policies control who can invoke SageMaker APIs."
+
+[answers.Q84]
+correct = ["A", "B"]
+explanation = "AWS KMS encrypts data at rest (S3, EBS, SageMaker storage). TLS/SSL encrypts data in transit between clients, SageMaker endpoints, and S3. Both are required for comprehensive encryption."
+
+[answers.Q85]
+correct = ["B"]
+explanation = "Launching the notebook in a VPC with no internet gateway or NAT gateway prevents all internet access. The notebook can still access AWS services through VPC endpoints."
+
+[answers.Q86]
+correct = ["B"]
+explanation = "AWS CloudTrail logs all API calls to SageMaker (and other AWS services), providing a complete audit trail of who did what, when, and from where. Essential for compliance."
+
+[answers.Q87]
+correct = ["B"]
+explanation = "A CloudWatch alarm monitors model quality metrics from SageMaker Model Monitor. When the metric breaches the threshold, it triggers a Lambda function that starts a SageMaker Pipeline for retraining."
+
+[answers.Q88]
+correct = ["B"]
+explanation = "SageMaker Role Manager provides a simplified interface for creating IAM roles with predefined ML activity-based permissions (e.g., data scientist, MLOps engineer) without writing complex IAM policies."
+
+[answers.Q89]
+correct = ["A"]
+explanation = "Deploying the endpoint with VPC configuration (private subnets and security groups) ensures all traffic stays within the VPC. No internet gateway means no public internet access."
+
+[answers.Q90]
+correct = ["A"]
+explanation = "An S3 bucket policy with a VPC endpoint condition (aws:sourceVpce) restricts access to requests originating from the specified VPC endpoint, ensuring data is only accessible from within the VPC."
+
+[answers.Q91]
+correct = ["B"]
+explanation = "SageMaker Managed Spot Training uses EC2 Spot Instances at up to 90% discount. SageMaker handles interruptions with checkpointing. Ideal for fault-tolerant training jobs."
+
+[answers.Q92]
+correct = ["B"]
+explanation = "AWS Cost Explorer with resource-level tags allows you to track and analyze costs across SageMaker resources. Tagging training jobs, endpoints, and processing jobs enables granular cost attribution."
+
+[answers.Q93]
+correct = ["B"]
+explanation = "S3 Versioning maintains multiple versions of model artifacts. If a new model performs poorly, you can easily retrieve and redeploy a previous version."
+
+[answers.Q94]
+correct = ["A", "B"]
+explanation = "HIPAA compliance requires using HIPAA-eligible services/instance types and having a BAA in place with AWS. The BAA defines each party's responsibilities for protecting PHI."
+
+[answers.Q95]
+correct = ["B"]
+explanation = "Data distribution metrics like KL divergence and the Kolmogorov-Smirnov (KS) test quantify how much the incoming data distribution has shifted from the training data baseline."
+
+[answers.Q96]
+correct = ["B"]
+explanation = "SageMaker Model Registry tracks model versions with approval status (Approved, Rejected, PendingManualApproval), approval metadata, and deployment history — providing model governance."
+
+[answers.Q97]
+correct = ["B"]
+explanation = "SageMaker Data Capture logs inference requests and responses (input/output data) to S3. This data can be used for monitoring, debugging, auditing, and retraining."
+
+[answers.Q98]
+correct = ["B"]
+explanation = "Analyzing CloudWatch metrics for CPU, memory, and model latency reveals whether instances are over-provisioned or under-provisioned. Right-sizing based on actual utilization optimizes costs."
+
+[answers.Q99]
+correct = ["B"]
+explanation = "Network isolation (EnableNetworkIsolation=true) prevents the training container from making any outbound network calls. It can only access data provided through SageMaker input channels."
+
+[answers.Q100]
+correct = ["B"]
+explanation = "Custom IAM policies with specific Allow and Deny statements implement least-privilege access. This ensures data scientists can train models but cannot create or delete production endpoints."

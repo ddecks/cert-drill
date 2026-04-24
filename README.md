@@ -279,14 +279,24 @@ cert-drill export aws-saa-c03 --ai-context | pbcopy
 
 ## Included Exam Packs
 
-- **aws-saa-c03** — AWS Solutions Architect Associate (SAA-C03)
+- **aws-aif-c01** — AWS Certified AI Practitioner (AIF-C01)
+  - 100 multiple-choice questions across 5 domains
+  - 84 flashcards across 11 topics (40 service cards + 44 concept cards)
+  - Full answer key with explanations
+
+- **aws-mla-c01** — AWS Certified Machine Learning Engineer – Associate (MLA-C01)
   - 100 multiple-choice questions across 4 domains
-  - 176 flashcards across 20 topics (119 service cards + 57 concept cards)
+  - 124 flashcards across 13 topics (80 service cards + 44 concept cards)
   - Full answer key with explanations
 
 - **aws-dva-c02** — AWS Certified Developer Associate (DVA-C02)
   - 100 multiple-choice questions across 4 domains
   - 184 flashcards across 15 topics (135 service cards + 49 concept cards)
+  - Full answer key with explanations
+
+- **aws-saa-c03** — AWS Solutions Architect Associate (SAA-C03)
+  - 100 multiple-choice questions across 4 domains
+  - 176 flashcards across 20 topics (119 service cards + 57 concept cards)
   - Full answer key with explanations
 
 ## Contributing

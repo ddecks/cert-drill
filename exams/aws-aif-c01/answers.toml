@@ -1,0 +1,401 @@
+# Answer key for AWS AIF-C01 Practice Exam
+
+[answers.Q1]
+correct = ["B"]
+explanation = "Machine learning is a subset of artificial intelligence. ML systems learn patterns from data and improve with experience, rather than being explicitly programmed with rules for every scenario."
+
+[answers.Q2]
+correct = ["C"]
+explanation = "Predicting churn (yes/no) from labeled historical data is a supervised learning classification problem. The model learns from labeled examples to classify new customers."
+
+[answers.Q3]
+correct = ["C"]
+explanation = "Clustering is an unsupervised learning technique that groups data points based on similarity without predefined labels. K-means and hierarchical clustering are common algorithms."
+
+[answers.Q4]
+correct = ["B"]
+explanation = "Overfitting occurs when a model memorizes the training data (including noise) instead of learning general patterns. It performs well on training data but poorly on new, unseen data."
+
+[answers.Q5]
+correct = ["B"]
+explanation = "Regression predicts continuous numerical values. Predicting house prices is a classic regression problem. Classification (spam/not spam, fraud/not fraud) predicts discrete categories."
+
+[answers.Q6]
+correct = ["C"]
+explanation = "The ML lifecycle follows: define the business problem → collect and prepare data → train the model → evaluate performance → deploy to production → monitor and iterate."
+
+[answers.Q7]
+correct = ["C"]
+explanation = "Reinforcement learning trains an agent to make decisions by receiving rewards for good actions and penalties for bad ones. It learns through trial and error in an environment."
+
+[answers.Q8]
+correct = ["B"]
+explanation = "A feature is an input variable (attribute) used by the model to make predictions. For example, in house price prediction, features might include square footage, number of bedrooms, and location."
+
+[answers.Q9]
+correct = ["B"]
+explanation = "Amazon SageMaker is a fully managed ML platform for building, training, and deploying models. It provides notebooks, training infrastructure, model hosting, and MLOps capabilities."
+
+[answers.Q10]
+correct = ["B"]
+explanation = "The validation set is used during development to tune hyperparameters and check for overfitting. The test set provides the final, unbiased evaluation. The training set is used to train the model."
+
+[answers.Q11]
+correct = ["B"]
+explanation = "Deep learning is a subset of ML that uses neural networks with multiple hidden layers. These deep networks can learn complex, hierarchical patterns in data (images, text, speech)."
+
+[answers.Q12]
+correct = ["B"]
+explanation = "With labeled examples for each category, this is a supervised image classification problem. The model learns to map images to their correct category labels."
+
+[answers.Q13]
+correct = ["B"]
+explanation = "A confusion matrix shows the counts of true positives, true negatives, false positives, and false negatives. It helps evaluate classification model performance beyond simple accuracy."
+
+[answers.Q14]
+correct = ["C"]
+explanation = "RMSE measures the average magnitude of prediction errors for continuous values. Accuracy and F1 are for classification. AUC-ROC evaluates classification threshold performance."
+
+[answers.Q15]
+correct = ["A"]
+explanation = "Speech-to-text transcription is a natural language processing (NLP) capability. Specifically, it falls under automatic speech recognition (ASR), which is a subfield of NLP."
+
+[answers.Q16]
+correct = ["B"]
+explanation = "Training is the process of learning patterns from data to build a model. Inference is using the trained model to make predictions on new, unseen data in production."
+
+[answers.Q17]
+correct = ["C"]
+explanation = "Anomaly detection without labeled examples is unsupervised learning. The model learns what 'normal' looks like and flags deviations. Supervised learning requires labeled data."
+
+[answers.Q18]
+correct = ["B"]
+explanation = "AWS AI services (Comprehend, Rekognition, Translate, Polly, Transcribe, etc.) provide pre-trained AI capabilities through simple API calls, requiring no ML expertise."
+
+[answers.Q19]
+correct = ["B"]
+explanation = "In supervised learning, a label is the known correct output (target value) associated with each training example. The model learns to predict these labels from the input features."
+
+[answers.Q20]
+correct = ["B"]
+explanation = "AI is the broadest field (machines mimicking human intelligence). ML is a subset of AI (learning from data). Deep learning is a subset of ML (neural networks with many layers)."
+
+[answers.Q21]
+correct = ["B"]
+explanation = "Generative AI creates new content — text, images, code, audio, video — based on patterns learned from training data. Unlike discriminative AI, which classifies existing data."
+
+[answers.Q22]
+correct = ["B"]
+explanation = "Foundation models are large models pre-trained on massive, diverse datasets. They learn general knowledge and can be adapted (fine-tuned or prompted) for many downstream tasks."
+
+[answers.Q23]
+correct = ["C"]
+explanation = "Amazon Titan, Claude (Anthropic), and GPT (OpenAI) are large language models — neural networks with billions of parameters trained on vast text data to understand and generate language."
+
+[answers.Q24]
+correct = ["B"]
+explanation = "A prompt is the input text, question, or instruction given to a generative AI model. The quality and structure of the prompt significantly affects the quality of the output."
+
+[answers.Q25]
+correct = ["B"]
+explanation = "Prompt engineering is the practice of designing and refining prompts to elicit better, more accurate, and more relevant responses from generative AI models."
+
+[answers.Q26]
+correct = ["B"]
+explanation = "Zero-shot: no examples, just the instruction. One-shot: one example to demonstrate the desired format. Few-shot: several examples to guide the model. More examples generally improve output quality."
+
+[answers.Q27]
+correct = ["B"]
+explanation = "Hallucinations are outputs that sound confident and plausible but are factually incorrect or entirely fabricated. This is a key challenge with LLMs. RAG and grounding help mitigate this."
+
+[answers.Q28]
+correct = ["B"]
+explanation = "RAG retrieves relevant information from external knowledge sources (documents, databases) and includes it in the prompt context. This grounds the model's response in factual data, reducing hallucinations."
+
+[answers.Q29]
+correct = ["B"]
+explanation = "Fine-tuning takes a pre-trained foundation model and further trains it on a smaller, domain-specific dataset. This adapts the model's behavior for a particular use case while retaining its general knowledge."
+
+[answers.Q30]
+correct = ["B"]
+explanation = "Foundation models are pre-trained on large, diverse datasets and can be adapted to many tasks through prompting or fine-tuning. Traditional ML models are typically trained from scratch for a single specific task."
+
+[answers.Q31]
+correct = ["B"]
+explanation = "Amazon Bedrock provides a single API to access foundation models from Amazon (Titan), Anthropic (Claude), Meta (Llama), Stability AI, and others. No infrastructure management required."
+
+[answers.Q32]
+correct = ["B"]
+explanation = "A token is a unit of text that the model processes. It can be a word, part of a word (subword), or a character. Models have token limits for input and output (context window)."
+
+[answers.Q33]
+correct = ["B"]
+explanation = "Temperature controls output randomness. Low temperature (e.g., 0.1) produces more deterministic, focused responses. High temperature (e.g., 0.9) produces more creative, varied responses."
+
+[answers.Q34]
+correct = ["B"]
+explanation = "An embedding is a numerical vector that represents data in a way that captures semantic meaning. Similar items have similar vectors, enabling semantic search and similarity comparisons."
+
+[answers.Q35]
+correct = ["B"]
+explanation = "The transformer architecture uses self-attention mechanisms to process all parts of a sequence in parallel (not sequentially like RNNs). It powers GPT, BERT, Claude, and most modern LLMs."
+
+[answers.Q36]
+correct = ["B"]
+explanation = "Text generation creates new content from a prompt or instruction. Text summarization takes existing long text and produces a shorter version that preserves the key information."
+
+[answers.Q37]
+correct = ["B"]
+explanation = "Converting bullet-point features into full product descriptions is a text generation / content creation task. The model generates new, coherent text from structured input."
+
+[answers.Q38]
+correct = ["B"]
+explanation = "The context window is the maximum number of tokens (input + output) a model can handle in a single request. Larger context windows allow processing longer documents but cost more."
+
+[answers.Q39]
+correct = ["B"]
+explanation = "Parameters are the internal weights learned during training. They determine the model's behavior. Larger models (more parameters, e.g., 70B, 175B) generally have more capability but require more compute."
+
+[answers.Q40]
+correct = ["B"]
+explanation = "Generative models create new data (text, images, code). Discriminative models classify or distinguish between categories (spam vs. not spam, cat vs. dog). They solve different types of problems."
+
+[answers.Q41]
+correct = ["B"]
+explanation = "Chain-of-thought prompting asks the model to reason step by step before giving a final answer. This improves accuracy on math, logic, and complex reasoning tasks."
+
+[answers.Q42]
+correct = ["B"]
+explanation = "Multi-modal models can process and generate multiple data types (text, images, audio, video) within a single model. Examples include models that can describe images or generate images from text."
+
+[answers.Q43]
+correct = ["B"]
+explanation = "Training a foundation model from scratch costs millions of dollars and requires massive datasets and compute. Bedrock provides access to pre-trained models via API, eliminating this cost and complexity."
+
+[answers.Q44]
+correct = ["B"]
+explanation = "Pre-training is the initial, expensive phase where the model learns general knowledge from a large dataset. Fine-tuning is the subsequent, cheaper phase where the model is specialized for a specific task."
+
+[answers.Q45]
+correct = ["B"]
+explanation = "Bedrock Knowledge Bases implements RAG — it indexes company documents, retrieves relevant passages at query time, and includes them in the model's context to ground responses in factual company data."
+
+[answers.Q46]
+correct = ["C"]
+explanation = "Bedrock Agents can decompose complex tasks, maintain conversation context, call external APIs and Lambda functions, and take actions on behalf of users — like an AI-powered assistant."
+
+[answers.Q47]
+correct = ["B"]
+explanation = "Amazon Textract extracts text, tables, forms, and key-value pairs from scanned documents and images. It goes beyond basic OCR by understanding document structure."
+
+[answers.Q48]
+correct = ["B"]
+explanation = "Amazon Comprehend provides pre-trained NLP capabilities including sentiment analysis (positive, negative, neutral, mixed), entity recognition, key phrase extraction, and language detection."
+
+[answers.Q49]
+correct = ["B"]
+explanation = "Amazon Translate provides neural machine translation for 75+ languages. It supports real-time and batch translation with custom terminology for domain-specific terms."
+
+[answers.Q50]
+correct = ["C"]
+explanation = "Amazon Polly converts text to natural-sounding speech. It supports 60+ voices in 30+ languages, including neural text-to-speech (NTTS) for the most natural-sounding output."
+
+[answers.Q51]
+correct = ["A", "B"]
+explanation = "Amazon Transcribe converts speech to text (ASR). Amazon Lex provides conversational AI with natural language understanding (NLU) and dialog management. Together they enable voice-driven assistants."
+
+[answers.Q52]
+correct = ["B"]
+explanation = "Amazon Rekognition content moderation detects inappropriate, unwanted, or offensive content in images and videos. It can identify nudity, violence, and other objectionable material."
+
+[answers.Q53]
+correct = ["B"]
+explanation = "Amazon Kendra is an intelligent enterprise search service that uses ML to understand natural language queries and return precise answers from documents, not just keyword matches."
+
+[answers.Q54]
+correct = ["C"]
+explanation = "Bedrock Guardrails allows you to configure content filters (hate, violence, sexual content), denied topic filters, PII redaction, and word filters to control model inputs and outputs."
+
+[answers.Q55]
+correct = ["B"]
+explanation = "Amazon Personalize is a fully managed recommendation service. It uses ML to generate real-time personalized product, content, and search recommendations from user interaction data."
+
+[answers.Q56]
+correct = ["B"]
+explanation = "Amazon Forecast is a fully managed time-series forecasting service. It automatically selects algorithms and generates probabilistic forecasts for demand planning, inventory, and resource allocation."
+
+[answers.Q57]
+correct = ["B"]
+explanation = "Code generation is a key capability of generative AI. Foundation models can generate, complete, explain, and debug code based on natural language descriptions."
+
+[answers.Q58]
+correct = ["B"]
+explanation = "Text summarization condenses long documents into shorter versions while preserving key information. Foundation models excel at this task through prompting."
+
+[answers.Q59]
+correct = ["B"]
+explanation = "Knowledge Bases automatically retrieves only the most relevant document chunks for each query, avoiding context window limitations. Sending all documents directly would exceed token limits and increase costs."
+
+[answers.Q60]
+correct = ["B"]
+explanation = "Text-to-image generation creates images from text descriptions. Models like Stable Diffusion and Amazon Titan Image Generator can produce marketing visuals, product images, and creative content."
+
+[answers.Q61]
+correct = ["B"]
+explanation = "Amazon Transcribe is an automatic speech recognition (ASR) service that converts audio to text. It supports real-time and batch transcription with speaker identification and custom vocabularies."
+
+[answers.Q62]
+correct = ["C"]
+explanation = "Amazon Rekognition provides face detection, analysis, and comparison capabilities. It can match faces against a collection for identity verification use cases."
+
+[answers.Q63]
+correct = ["B"]
+explanation = "Amazon A2I provides human review workflows for ML predictions. When model confidence is low, predictions are routed to human reviewers for verification before taking action."
+
+[answers.Q64]
+correct = ["B"]
+explanation = "Model evaluation / benchmarking is the process of comparing different models on the same task to determine which performs best for your specific use case, considering quality, latency, and cost."
+
+[answers.Q65]
+correct = ["B"]
+explanation = "Semantic search uses embeddings (vector representations) to find content based on meaning rather than exact keyword matches. Vector databases store these embeddings for efficient similarity search."
+
+[answers.Q66]
+correct = ["B"]
+explanation = "Bedrock Agents can orchestrate multi-step tasks by calling APIs, querying databases, and taking actions. An order management assistant that looks up orders and processes returns is a typical use case."
+
+[answers.Q67]
+correct = ["B"]
+explanation = "AI-powered code assistants use generative AI to help developers write, complete, debug, and explain code. Amazon Q Developer (formerly CodeWhisperer) is AWS's code assistant."
+
+[answers.Q68]
+correct = ["B"]
+explanation = "Different foundation models excel at different tasks (coding, creative writing, analysis, etc.). Bedrock's multi-model access lets you choose the best model per use case and avoid vendor lock-in."
+
+[answers.Q69]
+correct = ["B"]
+explanation = "Amazon Comprehend entity recognition identifies and extracts entities (people, places, organizations, dates, quantities) from text. It's a pre-trained NLP capability requiring no custom training."
+
+[answers.Q70]
+correct = ["B"]
+explanation = "A vector database stores high-dimensional vector embeddings and enables fast similarity search. It's essential for RAG — finding the most semantically relevant document chunks for a given query."
+
+[answers.Q71]
+correct = ["B"]
+explanation = "Amazon Lex is a conversational AI service for building chatbots and voice assistants. It handles intent recognition, slot filling, multi-turn dialog management, and integrates with Lambda for fulfillment."
+
+[answers.Q72]
+correct = ["B"]
+explanation = "Bedrock Knowledge Bases: 1) chunks documents, 2) creates vector embeddings, 3) stores them in a vector database, 4) at query time, retrieves the most relevant chunks, 5) includes them in the model's context."
+
+[answers.Q73]
+correct = ["B"]
+explanation = "Responsible AI encompasses fairness, transparency, explainability, safety, privacy, and accountability. It ensures AI systems benefit users without causing harm or perpetuating discrimination."
+
+[answers.Q74]
+correct = ["B"]
+explanation = "AI bias produces systematically unfair outcomes for certain groups. It often originates from biased training data, biased feature selection, or flawed model design. It can perpetuate and amplify societal inequalities."
+
+[answers.Q75]
+correct = ["B"]
+explanation = "This is algorithmic bias — the model has learned gender-based patterns from biased historical hiring data and applies them unfairly. This violates fairness principles and may violate employment laws."
+
+[answers.Q76]
+correct = ["B"]
+explanation = "Explainability is the ability to understand and communicate how a model makes decisions. It's critical for trust, debugging, regulatory compliance, and identifying bias."
+
+[answers.Q77]
+correct = ["B"]
+explanation = "Transparency allows stakeholders to understand AI decision-making, builds trust with users, enables accountability when errors occur, and supports regulatory compliance."
+
+[answers.Q78]
+correct = ["B"]
+explanation = "Regulators requiring explanations for loan decisions is an explainability and transparency requirement. The company must be able to show which factors influenced each decision."
+
+[answers.Q79]
+correct = ["B"]
+explanation = "Human-in-the-loop includes human oversight in AI workflows. Humans review high-stakes decisions, verify low-confidence predictions, and provide feedback to improve the system over time."
+
+[answers.Q80]
+correct = ["B"]
+explanation = "Amazon Augmented AI (A2I) provides managed human review workflows. It routes low-confidence ML predictions to human reviewers and integrates with Textract, Rekognition, and custom models."
+
+[answers.Q81]
+correct = ["B"]
+explanation = "Fairness means AI systems treat all individuals and groups equitably. They should not discriminate based on protected attributes (race, gender, age, disability) and should produce equitable outcomes."
+
+[answers.Q82]
+correct = ["B"]
+explanation = "SageMaker Clarify detects and measures bias in both training data (pre-training) and model predictions (post-training). It provides bias metrics across demographic groups and feature-level explanations."
+
+[answers.Q83]
+correct = ["B"]
+explanation = "AI-generated content can contain hallucinations (false information), biases, inaccuracies, copyrighted material, or inappropriate content. Human review is essential before publishing or acting on AI outputs."
+
+[answers.Q84]
+correct = ["B"]
+explanation = "AI safety ensures systems operate as intended without causing harm. It includes preventing misuse, managing risks, maintaining human control, and ensuring the system behaves predictably."
+
+[answers.Q85]
+correct = ["B"]
+explanation = "Amazon Bedrock Guardrails provides configurable content filters, denied topic filters, PII redaction, and word filters. These safeguards prevent harmful or inappropriate content from reaching customers."
+
+[answers.Q86]
+correct = ["B"]
+explanation = "Diverse, representative training data helps the model learn fair patterns across all populations. Underrepresented groups in training data lead to poor performance and biased predictions for those groups."
+
+[answers.Q87]
+correct = ["B"]
+explanation = "AWS IAM controls access to all AWS resources including AI services. IAM policies define who can access which resources and what actions they can perform."
+
+[answers.Q88]
+correct = ["C"]
+explanation = "TLS/SSL (HTTPS) encrypts data in transit between the client and AWS services. All AWS AI services, including Bedrock, require HTTPS connections."
+
+[answers.Q89]
+correct = ["B"]
+explanation = "AWS KMS (Key Management Service) manages encryption keys for data at rest. S3 server-side encryption uses KMS keys to encrypt stored objects, including AI training data."
+
+[answers.Q90]
+correct = ["B"]
+explanation = "AWS CloudTrail logs all API calls to AWS services, providing a complete audit trail. It records who made each call, when, from where, and with what parameters."
+
+[answers.Q91]
+correct = ["C"]
+explanation = "Bedrock Guardrails can automatically detect and redact PII (names, addresses, SSNs, etc.) from both model inputs and outputs, preventing sensitive data from being processed by the foundation model."
+
+[answers.Q92]
+correct = ["B"]
+explanation = "Data governance encompasses policies, processes, and standards for managing data quality, access controls, privacy, retention, and compliance throughout the entire AI lifecycle."
+
+[answers.Q93]
+correct = ["A", "B"]
+explanation = "HIPAA compliance requires using HIPAA-eligible AWS services and having a Business Associate Agreement (BAA) with AWS. The BAA defines responsibilities for protecting PHI."
+
+[answers.Q94]
+correct = ["B"]
+explanation = "Least privilege means granting only the minimum permissions needed. Users and services should only have access to the specific AI resources and actions required for their role."
+
+[answers.Q95]
+correct = ["B"]
+explanation = "Amazon Macie uses ML to automatically discover, classify, and protect sensitive data (PII, financial data, credentials) stored in S3. It helps identify data that needs protection before AI training."
+
+[answers.Q96]
+correct = ["B"]
+explanation = "Model governance includes version control, approval workflows, audit trails, lineage tracking, and compliance documentation. It ensures models are properly reviewed and approved before production deployment."
+
+[answers.Q97]
+correct = ["B"]
+explanation = "AWS Artifact provides on-demand access to AWS compliance reports and agreements (SOC, ISO, PCI, HIPAA BAA, etc.). It's the central resource for compliance documentation."
+
+[answers.Q98]
+correct = ["C"]
+explanation = "AWS secures the cloud infrastructure (hardware, networking, managed services). Customers are responsible for security in the cloud — their data, model inputs/outputs, access controls, and regulatory compliance."
+
+[answers.Q99]
+correct = ["B"]
+explanation = "Bedrock Guardrails denied topic filters allow you to define topics the model should refuse to discuss. This prevents the AI from generating content about prohibited subjects."
+
+[answers.Q100]
+correct = ["B"]
+explanation = "Logging AI inputs and outputs enables auditing for compliance, debugging issues, detecting misuse or abuse, identifying bias in production, measuring performance, and supporting incident investigation."
