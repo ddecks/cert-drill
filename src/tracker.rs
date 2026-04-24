@@ -1,14 +1,7 @@
 use crate::exam;
+use crate::paths::{data_dir, exams_dir};
 use colored::Colorize;
 use std::path::PathBuf;
-
-fn exams_dir() -> PathBuf {
-    PathBuf::from("exams")
-}
-
-fn data_dir() -> PathBuf {
-    PathBuf::from("data")
-}
 
 pub fn show_progress(exam_id: &str) -> Result<(), Box<dyn std::error::Error>> {
     let exam_path = exams_dir().join(exam_id);

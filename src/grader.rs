@@ -1,14 +1,7 @@
 use crate::exam::{self, Attempt, GradedAnswer};
+use crate::paths::{data_dir, exams_dir};
 use colored::Colorize;
 use std::path::PathBuf;
-
-fn exams_dir() -> PathBuf {
-    PathBuf::from("exams")
-}
-
-fn data_dir() -> PathBuf {
-    PathBuf::from("data")
-}
 
 pub fn grade(exam_id: &str, attempt: Option<&str>, score_only: bool, missed_only: bool) -> Result<(), Box<dyn std::error::Error>> {
     let attempt_data = load_attempt(exam_id, attempt)?;

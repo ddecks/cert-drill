@@ -1,11 +1,8 @@
 use crate::exam::{Attempt, UserAnswer};
+use crate::paths::data_dir;
 use chrono::Utc;
 use colored::Colorize;
 use std::path::PathBuf;
-
-fn data_dir() -> PathBuf {
-    PathBuf::from("data")
-}
 
 /// Import answers from a markdown file.
 ///

@@ -3,6 +3,7 @@ mod exam;
 mod flashcard;
 mod grader;
 mod import;
+mod paths;
 mod render;
 mod session;
 mod tracker;

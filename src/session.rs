@@ -1,18 +1,11 @@
 use crate::exam::{self, Attempt, UserAnswer};
 use crate::grader;
+use crate::paths::{data_dir, exams_dir};
 use chrono::Utc;
 use colored::Colorize;
 use dialoguer::Input;
 use rand::seq::SliceRandom;
 use std::path::{Path, PathBuf};
-
-fn exams_dir() -> PathBuf {
-    PathBuf::from("exams")
-}
-
-fn data_dir() -> PathBuf {
-    PathBuf::from("data")
-}
 
 pub fn load_exam(path: &str) -> Result<(), Box<dyn std::error::Error>> {
     let src = Path::new(path);

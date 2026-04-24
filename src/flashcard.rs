@@ -1,4 +1,5 @@
 use crate::exam;
+use crate::paths::{data_dir, exams_dir};
 use chrono::{DateTime, Duration, Utc};
 use colored::Colorize;
 use dialoguer::Input;
@@ -6,14 +7,6 @@ use rand::seq::SliceRandom;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::PathBuf;
-
-fn exams_dir() -> PathBuf {
-    PathBuf::from("exams")
-}
-
-fn data_dir() -> PathBuf {
-    PathBuf::from("data")
-}
 
 /// Persistent rating for a single flashcard, keyed by card front text.
 #[derive(Debug, Serialize, Deserialize, Clone)]
