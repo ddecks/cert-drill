@@ -12,6 +12,7 @@ use clap::Parser;
 use cli::{Cli, Command};
 
 fn main() {
+    paths::migrate_data();
     let cli = Cli::parse();
 
     let result = match cli.command {

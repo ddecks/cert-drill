@@ -92,10 +92,10 @@ When a user shares their cert-drill attempt files or asks for study help:
 1. The `reasoning` field in each answer is the most valuable data — it reveals misconceptions
 2. Tags like `#shotInDark`, `#unsure`, `#confident` in reasoning indicate self-assessed confidence
 3. The `--ai-context` export flag generates a pre-formatted prompt with missed questions + reasoning
-4. Grade results are in `data/<exam-id>/graded-*.toml`
+4. Grade results are in `~/.local/share/cert-drill/data/<exam-id>/graded-*.toml` (Linux), `~/Library/Application Support/cert-drill/data/` (macOS), `%APPDATA%\cert-drill\data\` (Windows)
 5. Progress tracking aggregates across all attempts by domain
 6. Flashcards are in `exams/<exam-id>/*flashcard*.md` organized by topic (multiple files supported)
-7. Flashcard ratings with spaced repetition state are in `data/<exam-id>/flashcard-ratings.toml`
+7. Flashcard ratings with spaced repetition state are in the data directory under `<exam-id>/flashcard-ratings.toml`
 
 ## Post-Submit Flow
 After submitting a quiz, the score is shown automatically, then the user is prompted:

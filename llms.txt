@@ -41,9 +41,11 @@ cert-drill presents multiple-choice exam questions in the terminal, captures bot
 - exams/<id>/answers.toml — answer key with explanations
 - exams/<id>/flashcards.md — optional flashcards by topic
 - exams/<id>/flashcards-concepts.md — optional additional concept cards (any *flashcard*.md file is loaded)
-- data/<id>/attempt-*.toml — user answers with reasoning (gitignored)
-- data/<id>/graded-*.toml — graded results (gitignored)
-- data/<id>/flashcard-ratings.toml — spaced repetition state (gitignored)
+- ~/.local/share/cert-drill/data/<id>/attempt-*.toml — user answers with reasoning (Linux/Termux)
+- ~/.local/share/cert-drill/data/<id>/graded-*.toml — graded results
+- ~/.local/share/cert-drill/data/<id>/flashcard-ratings.toml — spaced repetition state
+- On macOS: ~/Library/Application Support/cert-drill/data/
+- On Windows: %APPDATA%\cert-drill\data\
 
 ## For AI Assistants
 
